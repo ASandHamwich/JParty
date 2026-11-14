@@ -1,0 +1,18 @@
+#!/bin/bash
+# Start JParty from source. Works from any directory.
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+if command -v uv >/dev/null 2>&1; then
+    # Create or update .venv from pyproject.toml / uv.lock (a no-op when up to date).
+    uv sync --quiet
+elif [ ! -x .venv/bin/python ]; then
+    echo "No .venv found. Install uv (https://docs.astral.sh/uv/) or set it up with pip:" >&2
+    echo "  python3.11 -m venv .venv && .venv/bin/pip install -r requirements.txt" >&2
+    exit 1
+fi
+
+# JParty finds its sounds, images and templates relative to the jparty/ folder.
+cd jparty
+exec ../.venv/bin/python ../run.py "$@"

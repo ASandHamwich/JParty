@@ -47,6 +47,7 @@ cd jparty
 
 - Dependencies are pinned in three places that must stay in sync: `pyproject.toml` (plus `uv.lock`; run `uv lock` after editing), `requirements.txt` (the release workflow installs from it) and `environment.yml`. PyInstaller is in the `dev` dependency group, which `uv sync` installs by default.
 - `uv run` does not work for launching, since it must start from inside `jparty/`; call the venv's Python directly as above.
+- `./start` (macOS/Linux) does all of this from any directory: `uv sync` if uv is installed, then launches from inside `jparty/`.
 
 - It must be launched from inside `jparty/`. Assets, templates and static files resolve relative to the working directory.
 - It exits at startup unless two displays are attached and `j-archive.com` is reachable, so it usually cannot be launched from an agent session. Say so instead of claiming a change was verified by running it.

@@ -128,6 +128,14 @@ cd jparty
 ../.venv/bin/python ../run.py      # on Windows: ..\.venv\Scripts\python ..\run.py
 ```
 
+On a Mac or Linux, after the first setup (with either method), you can start JParty with one command from the `JParty` folder:
+
+```
+./start
+```
+
+It updates the setup if needed, when uv is installed, and opens JParty from the right folder for you.
+
 On Linux, install the audio headers first: `sudo apt-get install libasound2-dev`.
 
 To build a standalone app yourself, run `pyinstaller -y JParty.spec` from the top folder. The result appears in `dist/`.
