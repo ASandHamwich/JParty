@@ -1,0 +1,2830 @@
+{
+ "description": "JParty knowledge graph. imports/uses/defines/inherits edges are extracted from the Python AST; edges with curated=true were written by hand from reading the source.",
+ "nodes": [
+  {
+   "id": "module:jparty.board_widget",
+   "type": "module",
+   "path": "jparty/board_widget.py",
+   "lines": 188
+  },
+  {
+   "id": "module:jparty.borders",
+   "type": "module",
+   "path": "jparty/borders.py",
+   "lines": 158
+  },
+  {
+   "id": "module:jparty.constants",
+   "type": "module",
+   "path": "jparty/constants.py",
+   "lines": 9
+  },
+  {
+   "id": "module:jparty.controller",
+   "type": "module",
+   "path": "jparty/controller.py",
+   "lines": 243
+  },
+  {
+   "id": "module:jparty.environ",
+   "type": "module",
+   "path": "jparty/environ.py",
+   "lines": 6
+  },
+  {
+   "id": "module:jparty.final_display",
+   "type": "module",
+   "path": "jparty/final_display.py",
+   "lines": 55
+  },
+  {
+   "id": "module:jparty.game",
+   "type": "module",
+   "path": "jparty/game.py",
+   "lines": 636
+  },
+  {
+   "id": "module:jparty.helpmsg",
+   "type": "module",
+   "path": "jparty/helpmsg.py",
+   "lines": 14
+  },
+  {
+   "id": "module:jparty.logger",
+   "type": "module",
+   "path": "jparty/logger.py",
+   "lines": 96
+  },
+  {
+   "id": "module:jparty.main",
+   "type": "module",
+   "path": "jparty/main.py",
+   "lines": 113
+  },
+  {
+   "id": "module:jparty.main_display",
+   "type": "module",
+   "path": "jparty/main_display.py",
+   "lines": 277
+  },
+  {
+   "id": "module:jparty.question_widget",
+   "type": "module",
+   "path": "jparty/question_widget.py",
+   "lines": 133
+  },
+  {
+   "id": "module:jparty.retrieve",
+   "type": "module",
+   "path": "jparty/retrieve.py",
+   "lines": 188
+  },
+  {
+   "id": "module:jparty.scoreboard",
+   "type": "module",
+   "path": "jparty/scoreboard.py",
+   "lines": 239
+  },
+  {
+   "id": "module:jparty.settings",
+   "type": "module",
+   "path": "jparty/settings.py",
+   "lines": 226
+  },
+  {
+   "id": "module:jparty.style",
+   "type": "module",
+   "path": "jparty/style.py",
+   "lines": 60
+  },
+  {
+   "id": "module:jparty.utils",
+   "type": "module",
+   "path": "jparty/utils.py",
+   "lines": 304
+  },
+  {
+   "id": "module:jparty.version",
+   "type": "module",
+   "path": "jparty/version.py",
+   "lines": 1
+  },
+  {
+   "id": "module:jparty.welcome_widget",
+   "type": "module",
+   "path": "jparty/welcome_widget.py",
+   "lines": 337
+  },
+  {
+   "id": "module:run",
+   "type": "module",
+   "path": "run.py",
+   "lines": 5
+  },
+  {
+   "id": "package:PyQt6",
+   "type": "external_package"
+  },
+  {
+   "id": "package:random",
+   "type": "external_package"
+  },
+  {
+   "id": "package:itertools",
+   "type": "external_package"
+  },
+  {
+   "id": "package:simpleaudio",
+   "type": "external_package"
+  },
+  {
+   "id": "package:functools",
+   "type": "external_package"
+  },
+  {
+   "id": "class:CardLabel",
+   "type": "class",
+   "module": "jparty.board_widget",
+   "line": 15,
+   "methods": [
+    "__init__",
+    "startFontSize",
+    "setText",
+    "text",
+    "resizeEvent"
+   ]
+  },
+  {
+   "id": "extclass:QWidget",
+   "type": "external_class"
+  },
+  {
+   "id": "class:CategoryCard",
+   "type": "class",
+   "module": "jparty.board_widget",
+   "line": 38,
+   "methods": []
+  },
+  {
+   "id": "class:QuestionCard",
+   "type": "class",
+   "module": "jparty.board_widget",
+   "line": 42,
+   "methods": [
+    "__init__",
+    "question",
+    "__moneytext",
+    "question",
+    "startFontSize",
+    "inactive"
+   ]
+  },
+  {
+   "id": "class:HostQuestionCard",
+   "type": "class",
+   "module": "jparty.board_widget",
+   "line": 72,
+   "methods": [
+    "__init__",
+    "mousePressEvent",
+    "leaveEvent",
+    "enterEvent"
+   ]
+  },
+  {
+   "id": "class:BoardWidget",
+   "type": "class",
+   "module": "jparty.board_widget",
+   "line": 101,
+   "methods": [
+    "__init__",
+    "load_round",
+    "resizeEvent",
+    "set_category",
+    "set_question",
+    "board",
+    "clear"
+   ]
+  },
+  {
+   "id": "package:time",
+   "type": "external_package"
+  },
+  {
+   "id": "package:threading",
+   "type": "external_package"
+  },
+  {
+   "id": "class:Borders",
+   "type": "class",
+   "module": "jparty.borders",
+   "line": 11,
+   "methods": [
+    "__init__",
+    "__iter__",
+    "create_widget",
+    "__flash",
+    "flash",
+    "lights"
+   ]
+  },
+  {
+   "id": "class:HostBorders",
+   "type": "class",
+   "module": "jparty.borders",
+   "line": 39,
+   "methods": [
+    "__init__",
+    "create_widget",
+    "__flash_hints",
+    "buzz_hint",
+    "show_settings_button",
+    "arrowhints",
+    "spacehints",
+    "closeEvent"
+   ]
+  },
+  {
+   "id": "class:BorderWidget",
+   "type": "class",
+   "module": "jparty.borders",
+   "line": 95,
+   "methods": [
+    "__init__",
+    "lights",
+    "sizeHint",
+    "paintEvent"
+   ]
+  },
+  {
+   "id": "class:HostBorderWidget",
+   "type": "class",
+   "module": "jparty.borders",
+   "line": 117,
+   "methods": [
+    "__init__",
+    "show_hints",
+    "hide_hints",
+    "resizeEvent",
+    "paintEvent"
+   ]
+  },
+  {
+   "id": "package:logging",
+   "type": "external_package"
+  },
+  {
+   "id": "package:tornado",
+   "type": "external_package"
+  },
+  {
+   "id": "package:os",
+   "type": "external_package"
+  },
+  {
+   "id": "package:socket",
+   "type": "external_package"
+  },
+  {
+   "id": "class:Application",
+   "type": "class",
+   "module": "jparty.controller",
+   "line": 20,
+   "methods": [
+    "__init__"
+   ]
+  },
+  {
+   "id": "extclass:tornado.web.Application",
+   "type": "external_class"
+  },
+  {
+   "id": "class:WelcomeHandler",
+   "type": "class",
+   "module": "jparty.controller",
+   "line": 39,
+   "methods": [
+    "get"
+   ]
+  },
+  {
+   "id": "extclass:tornado.web.RequestHandler",
+   "type": "external_class"
+  },
+  {
+   "id": "class:BuzzerHandler",
+   "type": "class",
+   "module": "jparty.controller",
+   "line": 44,
+   "methods": [
+    "post"
+   ]
+  },
+  {
+   "id": "class:BuzzerSocketHandler",
+   "type": "class",
+   "module": "jparty.controller",
+   "line": 54,
+   "methods": [
+    "initialize",
+    "get_compression_options",
+    "open",
+    "send",
+    "check_if_exists",
+    "on_message",
+    "init_player",
+    "buzz",
+    "wager",
+    "toolate",
+    "on_close"
+   ]
+  },
+  {
+   "id": "extclass:tornado.websocket.WebSocketHandler",
+   "type": "external_class"
+  },
+  {
+   "id": "class:BuzzerController",
+   "type": "class",
+   "module": "jparty.controller",
+   "line": 144,
+   "methods": [
+    "__init__",
+    "start",
+    "restart",
+    "buzz",
+    "wager",
+    "answer",
+    "new_player",
+    "localip",
+    "host",
+    "player_with_token",
+    "open_wagers",
+    "close_wagers",
+    "prompt_answers",
+    "toolate"
+   ]
+  },
+  {
+   "id": "package:sys",
+   "type": "external_package"
+  },
+  {
+   "id": "class:FinalDisplay",
+   "type": "class",
+   "module": "jparty.final_display",
+   "line": 8,
+   "methods": [
+    "__init__"
+   ]
+  },
+  {
+   "id": "class:FinalAnswerWidget",
+   "type": "class",
+   "module": "jparty.final_display",
+   "line": 22,
+   "methods": [
+    "__init__",
+    "startFontSize",
+    "show_winner",
+    "show_tie"
+   ]
+  },
+  {
+   "id": "package:dataclasses",
+   "type": "external_package"
+  },
+  {
+   "id": "package:collections",
+   "type": "external_package"
+  },
+  {
+   "id": "class:QuestionTimer",
+   "type": "class",
+   "module": "jparty.game",
+   "line": 20,
+   "methods": [
+    "__init__",
+    "run",
+    "start",
+    "cancel",
+    "pause",
+    "resume"
+   ]
+  },
+  {
+   "id": "class:KeystrokeEvent",
+   "type": "class",
+   "module": "jparty.game",
+   "line": 58,
+   "methods": []
+  },
+  {
+   "id": "class:KeystrokeManager",
+   "type": "class",
+   "module": "jparty.game",
+   "line": 66,
+   "methods": [
+    "__init__",
+    "addEvent",
+    "call",
+    "_activate",
+    "_deactivate",
+    "activate",
+    "deactivate"
+   ]
+  },
+  {
+   "id": "class:Question",
+   "type": "class",
+   "module": "jparty.game",
+   "line": 121,
+   "methods": []
+  },
+  {
+   "id": "class:Board",
+   "type": "class",
+   "module": "jparty.game",
+   "line": 131,
+   "methods": [
+    "__init__",
+    "get_question",
+    "complete"
+   ]
+  },
+  {
+   "id": "class:FinalBoard",
+   "type": "class",
+   "module": "jparty.game",
+   "line": 152,
+   "methods": [
+    "__init__",
+    "complete"
+   ]
+  },
+  {
+   "id": "class:GameData",
+   "type": "class",
+   "module": "jparty.game",
+   "line": 165,
+   "methods": []
+  },
+  {
+   "id": "class:Game",
+   "type": "class",
+   "module": "jparty.game",
+   "line": 171,
+   "methods": [
+    "__init__",
+    "startable",
+    "begin_theme_song",
+    "start_game",
+    "setDisplays",
+    "setBuzzerController",
+    "arrowhints",
+    "spacehints",
+    "new_player",
+    "remove_player",
+    "valid_game",
+    "open_responses",
+    "modify_players",
+    "close_responses",
+    "buzz",
+    "answer_given",
+    "back_to_board",
+    "index_of_current_round",
+    "is_final",
+    "prev_round",
+    "next_round",
+    "start_final",
+    "wager",
+    "check_all_wagered",
+    "answer",
+    "final_open_responses",
+    "final_next_player",
+    "final_show_answer",
+    "final_correct_answer",
+    "final_incorrect_answer",
+    "final_judgement_given",
+    "final_finished_song",
+    "end_game",
+    "close_game",
+    "game_started",
+    "get_dd_wager",
+    "load_question",
+    "open_final",
+    "correct_answer",
+    "incorrect_answer",
+    "stumped",
+    "__toolate",
+    "set_score",
+    "adjust_score",
+    "close"
+   ]
+  },
+  {
+   "id": "extclass:QObject",
+   "type": "external_class"
+  },
+  {
+   "id": "class:Player",
+   "type": "class",
+   "module": "jparty.game",
+   "line": 622,
+   "methods": [
+    "__init__",
+    "__hash__",
+    "state"
+   ]
+  },
+  {
+   "id": "package:traceback",
+   "type": "external_package"
+  },
+  {
+   "id": "package:webbrowser",
+   "type": "external_package"
+  },
+  {
+   "id": "package:urllib",
+   "type": "external_package"
+  },
+  {
+   "id": "function:jparty.logger.mailto",
+   "type": "function",
+   "module": "jparty.logger",
+   "line": 24
+  },
+  {
+   "id": "function:jparty.logger.show_exception_box",
+   "type": "function",
+   "module": "jparty.logger",
+   "line": 31
+  },
+  {
+   "id": "class:UncaughtHook",
+   "type": "class",
+   "module": "jparty.logger",
+   "line": 62,
+   "methods": [
+    "__init__",
+    "exception_hook"
+   ]
+  },
+  {
+   "id": "package:requests",
+   "type": "external_package"
+  },
+  {
+   "id": "function:jparty.main.check_internet",
+   "type": "function",
+   "module": "jparty.main",
+   "line": 19
+  },
+  {
+   "id": "function:jparty.main.permission_error",
+   "type": "function",
+   "module": "jparty.main",
+   "line": 35
+  },
+  {
+   "id": "function:jparty.main.audio_error",
+   "type": "function",
+   "module": "jparty.main",
+   "line": 46
+  },
+  {
+   "id": "function:jparty.main.check_second_monitor",
+   "type": "function",
+   "module": "jparty.main",
+   "line": 57
+  },
+  {
+   "id": "function:jparty.main.main",
+   "type": "function",
+   "module": "jparty.main",
+   "line": 70
+  },
+  {
+   "id": "class:DisplayWindow",
+   "type": "class",
+   "module": "jparty.main_display",
+   "line": 36,
+   "methods": [
+    "__init__",
+    "host",
+    "monitor",
+    "create_border_widget",
+    "create_start_menu",
+    "create_score_board",
+    "create_question_widget",
+    "create_final_widget",
+    "resizeEvent",
+    "show_welcome_widgets",
+    "hide_question",
+    "load_question",
+    "load_final",
+    "load_final_judgement",
+    "closeEvent",
+    "player_widget",
+    "remove_card",
+    "close_final",
+    "restart"
+   ]
+  },
+  {
+   "id": "extclass:QMainWindow",
+   "type": "external_class"
+  },
+  {
+   "id": "class:HostDisplayWindow",
+   "type": "class",
+   "module": "jparty.main_display",
+   "line": 177,
+   "methods": [
+    "__init__",
+    "host",
+    "monitor",
+    "create_start_menu",
+    "create_score_board",
+    "create_border_widget",
+    "resizeEvent",
+    "create_question_widget",
+    "create_final_widget",
+    "keyPressEvent",
+    "hide_welcome_widgets",
+    "show_settings_button",
+    "show_settings",
+    "show_player_settings",
+    "restart",
+    "hide_question",
+    "load_question",
+    "set_player_in_control"
+   ]
+  },
+  {
+   "id": "class:QuestionWidget",
+   "type": "class",
+   "module": "jparty.question_widget",
+   "line": 12,
+   "methods": [
+    "__init__",
+    "startFontSize"
+   ]
+  },
+  {
+   "id": "class:HostQuestionWidget",
+   "type": "class",
+   "module": "jparty.question_widget",
+   "line": 32,
+   "methods": [
+    "__init__",
+    "paintEvent"
+   ]
+  },
+  {
+   "id": "class:DailyDoubleWidget",
+   "type": "class",
+   "module": "jparty.question_widget",
+   "line": 51,
+   "methods": [
+    "__init__",
+    "startDDFontSize",
+    "show_question"
+   ]
+  },
+  {
+   "id": "class:HostDailyDoubleWidget",
+   "type": "class",
+   "module": "jparty.question_widget",
+   "line": 69,
+   "methods": [
+    "__init__",
+    "show_question"
+   ]
+  },
+  {
+   "id": "class:FinalJeopardyWidget",
+   "type": "class",
+   "module": "jparty.question_widget",
+   "line": 91,
+   "methods": [
+    "__init__",
+    "startCategoryFontSize",
+    "show_question"
+   ]
+  },
+  {
+   "id": "class:HostFinalJeopardyWidget",
+   "type": "class",
+   "module": "jparty.question_widget",
+   "line": 111,
+   "methods": [
+    "__init__",
+    "hide_hint",
+    "show_question"
+   ]
+  },
+  {
+   "id": "package:bs4",
+   "type": "external_package"
+  },
+  {
+   "id": "package:html",
+   "type": "external_package"
+  },
+  {
+   "id": "package:re",
+   "type": "external_package"
+  },
+  {
+   "id": "package:json",
+   "type": "external_package"
+  },
+  {
+   "id": "package:csv",
+   "type": "external_package"
+  },
+  {
+   "id": "function:jparty.retrieve.list_to_game",
+   "type": "function",
+   "module": "jparty.retrieve",
+   "line": 12
+  },
+  {
+   "id": "function:jparty.retrieve.get_Gsheet_game",
+   "type": "function",
+   "module": "jparty.retrieve",
+   "line": 45
+  },
+  {
+   "id": "class:RetrievalException",
+   "type": "class",
+   "module": "jparty.retrieve",
+   "line": 53,
+   "methods": []
+  },
+  {
+   "id": "extclass:Exception",
+   "type": "external_class"
+  },
+  {
+   "id": "class:IncompleteException",
+   "type": "class",
+   "module": "jparty.retrieve",
+   "line": 57,
+   "methods": []
+  },
+  {
+   "id": "function:jparty.retrieve.get_game",
+   "type": "function",
+   "module": "jparty.retrieve",
+   "line": 61
+  },
+  {
+   "id": "function:jparty.retrieve.get_jarchive_game",
+   "type": "function",
+   "module": "jparty.retrieve",
+   "line": 74
+  },
+  {
+   "id": "function:jparty.retrieve.get_wayback_game",
+   "type": "function",
+   "module": "jparty.retrieve",
+   "line": 80
+  },
+  {
+   "id": "function:jparty.retrieve.findanswer",
+   "type": "function",
+   "module": "jparty.retrieve",
+   "line": 104
+  },
+  {
+   "id": "function:jparty.retrieve.get_generic_game",
+   "type": "function",
+   "module": "jparty.retrieve",
+   "line": 108
+  },
+  {
+   "id": "function:jparty.retrieve.get_game_sum",
+   "type": "function",
+   "module": "jparty.retrieve",
+   "line": 174
+  },
+  {
+   "id": "function:jparty.retrieve.get_random_game",
+   "type": "function",
+   "module": "jparty.retrieve",
+   "line": 183
+  },
+  {
+   "id": "package:base64",
+   "type": "external_package"
+  },
+  {
+   "id": "class:NameLabel",
+   "type": "class",
+   "module": "jparty.scoreboard",
+   "line": 14,
+   "methods": [
+    "__init__",
+    "startNameFontSize",
+    "resizeEvent"
+   ]
+  },
+  {
+   "id": "class:PlayerWidget",
+   "type": "class",
+   "module": "jparty.scoreboard",
+   "line": 46,
+   "methods": [
+    "__init__",
+    "sizeHint",
+    "minimumSizeHint",
+    "startScoreFontSize",
+    "resizeEvent",
+    "set_lights",
+    "__buzz_hint",
+    "buzz_hint",
+    "update_score",
+    "run_lights",
+    "stop_lights",
+    "__lights",
+    "mousePressEvent",
+    "paintEvent",
+    "leaveEvent",
+    "enterEvent"
+   ]
+  },
+  {
+   "id": "class:HostPlayerWidget",
+   "type": "class",
+   "module": "jparty.scoreboard",
+   "line": 168,
+   "methods": [
+    "__init__",
+    "resizeEvent"
+   ]
+  },
+  {
+   "id": "class:ScoreBoard",
+   "type": "class",
+   "module": "jparty.scoreboard",
+   "line": 189,
+   "methods": [
+    "__init__",
+    "minimumHeight",
+    "refresh_players",
+    "create_player_widget",
+    "paintEvent"
+   ]
+  },
+  {
+   "id": "class:HostScoreBoard",
+   "type": "class",
+   "module": "jparty.scoreboard",
+   "line": 233,
+   "methods": [
+    "create_player_widget",
+    "show_close_buttons"
+   ]
+  },
+  {
+   "id": "class:SettingsDialog",
+   "type": "class",
+   "module": "jparty.settings",
+   "line": 23,
+   "methods": [
+    "__init__",
+    "paintEvent"
+   ]
+  },
+  {
+   "id": "class:PlayerSettingsDialog",
+   "type": "class",
+   "module": "jparty.settings",
+   "line": 39,
+   "methods": [
+    "__init__",
+    "close",
+    "resizeEvent"
+   ]
+  },
+  {
+   "id": "class:NewPlayersPopup",
+   "type": "class",
+   "module": "jparty.settings",
+   "line": 94,
+   "methods": [
+    "__init__",
+    "close"
+   ]
+  },
+  {
+   "id": "extclass:QDialog",
+   "type": "external_class"
+  },
+  {
+   "id": "class:InGameSettingsDialog",
+   "type": "class",
+   "module": "jparty.settings",
+   "line": 132,
+   "methods": [
+    "__init__",
+    "quit_game",
+    "allow_new_players",
+    "disable_buttons",
+    "resizeEvent"
+   ]
+  },
+  {
+   "id": "class:JPartyStyle",
+   "type": "class",
+   "module": "jparty.style",
+   "line": 8,
+   "methods": [
+    "pixelMetric",
+    "styleHint"
+   ]
+  },
+  {
+   "id": "extclass:QCommonStyle",
+   "type": "external_class"
+  },
+  {
+   "id": "class:MyLabel",
+   "type": "class",
+   "module": "jparty.style",
+   "line": 28,
+   "methods": [
+    "__init__"
+   ]
+  },
+  {
+   "id": "function:jparty.utils.resource_path",
+   "type": "function",
+   "module": "jparty.utils",
+   "line": 23
+  },
+  {
+   "id": "class:SongPlayer",
+   "type": "class",
+   "module": "jparty.utils",
+   "line": 35,
+   "methods": [
+    "__init__",
+    "play",
+    "final",
+    "stop",
+    "__repeat"
+   ]
+  },
+  {
+   "id": "class:CompoundObject",
+   "type": "class",
+   "module": "jparty.utils",
+   "line": 70,
+   "methods": [
+    "__init__",
+    "__setattr__",
+    "__getattr__",
+    "__iadd__",
+    "__call__",
+    "__repr__"
+   ]
+  },
+  {
+   "id": "function:jparty.utils.add_shadow",
+   "type": "function",
+   "module": "jparty.utils",
+   "line": 99
+  },
+  {
+   "id": "class:AutosizeWidget",
+   "type": "class",
+   "module": "jparty.utils",
+   "line": 107,
+   "methods": [
+    "__init__",
+    "sizeHint",
+    "minimumSizeHint",
+    "heightForWidth",
+    "resizeEvent",
+    "autoresize",
+    "plaintext",
+    "setAutosizeMargins",
+    "autofitsize"
+   ]
+  },
+  {
+   "id": "class:DynamicLabel",
+   "type": "class",
+   "module": "jparty.utils",
+   "line": 192,
+   "methods": [
+    "__init__",
+    "flags",
+    "resizeEvent",
+    "setText",
+    "initialSize"
+   ]
+  },
+  {
+   "id": "extclass:QLabel",
+   "type": "external_class"
+  },
+  {
+   "id": "class:DynamicButton",
+   "type": "class",
+   "module": "jparty.utils",
+   "line": 223,
+   "methods": [
+    "__init__",
+    "resizeEvent",
+    "setText",
+    "initialSize",
+    "flags"
+   ]
+  },
+  {
+   "id": "extclass:QPushButton",
+   "type": "external_class"
+  },
+  {
+   "id": "class:DDWagerDialog",
+   "type": "class",
+   "module": "jparty.utils",
+   "line": 241,
+   "methods": [
+    "__init__",
+    "submit",
+    "submit_predefined",
+    "getInt"
+   ]
+  },
+  {
+   "id": "package:qrcode",
+   "type": "external_package"
+  },
+  {
+   "id": "class:QRImage",
+   "type": "class",
+   "module": "jparty.welcome_widget",
+   "line": 25,
+   "methods": [
+    "__init__",
+    "pixmap",
+    "drawrect",
+    "save"
+   ]
+  },
+  {
+   "id": "extclass:qrcode.image.base.BaseImage",
+   "type": "external_class"
+  },
+  {
+   "id": "class:StartWidget",
+   "type": "class",
+   "module": "jparty.welcome_widget",
+   "line": 53,
+   "methods": [
+    "__init__",
+    "paintEvent",
+    "resizeEvent"
+   ]
+  },
+  {
+   "id": "class:Welcome",
+   "type": "class",
+   "module": "jparty.welcome_widget",
+   "line": 89,
+   "methods": [
+    "__init__",
+    "show_help",
+    "show_settings",
+    "resizeEvent",
+    "__random",
+    "random",
+    "__load_game",
+    "set_summary",
+    "set_gameid",
+    "load_game",
+    "check_start",
+    "restart"
+   ]
+  },
+  {
+   "id": "class:QRWidget",
+   "type": "class",
+   "module": "jparty.welcome_widget",
+   "line": 292,
+   "methods": [
+    "__init__",
+    "start_fontsize",
+    "resizeEvent",
+    "restart"
+   ]
+  },
+  {
+   "id": "service:j-archive",
+   "type": "external_system",
+   "label": "j-archive.com (clue source)"
+  },
+  {
+   "id": "service:wayback",
+   "type": "external_system",
+   "label": "web.archive.org (fallback clue source)"
+  },
+  {
+   "id": "service:google-sheets",
+   "type": "external_system",
+   "label": "Google Sheets CSV export (custom games)"
+  },
+  {
+   "id": "client:phone",
+   "type": "external_system",
+   "label": "Player phone browser (buzzer/templates/index.html + static/buzzer.js)"
+  }
+ ],
+ "edges": [
+  {
+   "source": "module:jparty.board_widget",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "package:random",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "package:itertools",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "package:simpleaudio",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "package:functools",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "module:jparty.game",
+   "relation": "imports",
+   "names": [
+    "Board"
+   ]
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "module:jparty.style",
+   "relation": "imports",
+   "names": [
+    "MyLabel",
+    "CARDPAL",
+    "JBLUE",
+    "DARKBLUE"
+   ]
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "module:jparty.constants",
+   "relation": "imports",
+   "names": [
+    "CATEGORY_REVEAL_TIME",
+    "QUESTION_REVEAL_TIME",
+    "BEFORE_REVEAL_WAIT_TIME"
+   ]
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "module:jparty.utils",
+   "relation": "imports",
+   "names": [
+    "resource_path"
+   ]
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "class:CardLabel",
+   "relation": "defines"
+  },
+  {
+   "source": "class:CardLabel",
+   "target": "extclass:QWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "class:CategoryCard",
+   "relation": "defines"
+  },
+  {
+   "source": "class:CategoryCard",
+   "target": "class:CardLabel",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "class:QuestionCard",
+   "relation": "defines"
+  },
+  {
+   "source": "class:QuestionCard",
+   "target": "class:CardLabel",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "class:HostQuestionCard",
+   "relation": "defines"
+  },
+  {
+   "source": "class:HostQuestionCard",
+   "target": "class:QuestionCard",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.board_widget",
+   "target": "class:BoardWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:BoardWidget",
+   "target": "extclass:QWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.borders",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.borders",
+   "target": "module:jparty.utils",
+   "relation": "imports",
+   "names": [
+    "resource_path"
+   ]
+  },
+  {
+   "source": "module:jparty.borders",
+   "target": "package:time",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.borders",
+   "target": "package:threading",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.borders",
+   "target": "class:Borders",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.borders",
+   "target": "class:HostBorders",
+   "relation": "defines"
+  },
+  {
+   "source": "class:HostBorders",
+   "target": "class:Borders",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.borders",
+   "target": "class:BorderWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:BorderWidget",
+   "target": "extclass:QWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.borders",
+   "target": "class:HostBorderWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:HostBorderWidget",
+   "target": "class:BorderWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "package:logging",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "package:tornado",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "package:os",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "package:threading",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "package:socket",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "module:jparty.environ",
+   "relation": "imports",
+   "names": [
+    "root"
+   ]
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "module:jparty.game",
+   "relation": "imports",
+   "names": [
+    "Player"
+   ]
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "module:jparty.constants",
+   "relation": "imports",
+   "names": [
+    "MAXPLAYERS",
+    "PORT"
+   ]
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "class:Application",
+   "relation": "defines"
+  },
+  {
+   "source": "class:Application",
+   "target": "extclass:tornado.web.Application",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "class:WelcomeHandler",
+   "relation": "defines"
+  },
+  {
+   "source": "class:WelcomeHandler",
+   "target": "extclass:tornado.web.RequestHandler",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "class:BuzzerHandler",
+   "relation": "defines"
+  },
+  {
+   "source": "class:BuzzerHandler",
+   "target": "extclass:tornado.web.RequestHandler",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "class:BuzzerSocketHandler",
+   "relation": "defines"
+  },
+  {
+   "source": "class:BuzzerSocketHandler",
+   "target": "extclass:tornado.websocket.WebSocketHandler",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.controller",
+   "target": "class:BuzzerController",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.environ",
+   "target": "package:sys",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.final_display",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.final_display",
+   "target": "module:jparty.scoreboard",
+   "relation": "imports",
+   "names": [
+    "NameLabel"
+   ]
+  },
+  {
+   "source": "module:jparty.final_display",
+   "target": "module:jparty.style",
+   "relation": "imports",
+   "names": [
+    "MyLabel",
+    "CARDPAL"
+   ]
+  },
+  {
+   "source": "module:jparty.final_display",
+   "target": "module:jparty.utils",
+   "relation": "imports",
+   "names": [
+    "add_shadow"
+   ]
+  },
+  {
+   "source": "module:jparty.final_display",
+   "target": "class:FinalDisplay",
+   "relation": "defines"
+  },
+  {
+   "source": "class:FinalDisplay",
+   "target": "extclass:QWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.final_display",
+   "target": "class:FinalAnswerWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:FinalAnswerWidget",
+   "target": "extclass:QWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "package:threading",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "package:time",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "package:dataclasses",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "package:os",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "package:sys",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "package:simpleaudio",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "package:collections",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "package:logging",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "module:jparty.utils",
+   "relation": "imports",
+   "names": [
+    "SongPlayer",
+    "resource_path",
+    "CompoundObject",
+    "DDWagerDialog"
+   ]
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "module:jparty.constants",
+   "relation": "imports",
+   "names": [
+    "FJTIME",
+    "QUESTIONTIME",
+    "BUZZER_DELAY"
+   ]
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "class:QuestionTimer",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "class:KeystrokeEvent",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "class:KeystrokeManager",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "class:Question",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "class:Board",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "class:FinalBoard",
+   "relation": "defines"
+  },
+  {
+   "source": "class:FinalBoard",
+   "target": "class:Board",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "class:GameData",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "class:Game",
+   "relation": "defines"
+  },
+  {
+   "source": "class:Game",
+   "target": "extclass:QObject",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.game",
+   "target": "class:Player",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.logger",
+   "target": "package:sys",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.logger",
+   "target": "package:os",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.logger",
+   "target": "package:traceback",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.logger",
+   "target": "package:logging",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.logger",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.logger",
+   "target": "package:webbrowser",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.logger",
+   "target": "package:urllib",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.logger",
+   "target": "module:jparty.version",
+   "relation": "imports",
+   "names": [
+    "version"
+   ]
+  },
+  {
+   "source": "module:jparty.logger",
+   "target": "module:jparty.environ",
+   "relation": "imports",
+   "names": [
+    "root"
+   ]
+  },
+  {
+   "source": "module:jparty.logger",
+   "target": "function:jparty.logger.mailto",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.logger",
+   "target": "function:jparty.logger.show_exception_box",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.logger",
+   "target": "class:UncaughtHook",
+   "relation": "defines"
+  },
+  {
+   "source": "class:UncaughtHook",
+   "target": "extclass:QObject",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "package:sys",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "package:requests",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "package:logging",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "package:simpleaudio",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "module:jparty.game",
+   "relation": "imports",
+   "names": [
+    "Game"
+   ]
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "module:jparty.controller",
+   "relation": "imports",
+   "names": [
+    "BuzzerController"
+   ]
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "module:jparty.main_display",
+   "relation": "imports",
+   "names": [
+    "DisplayWindow",
+    "HostDisplayWindow"
+   ]
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "module:jparty.style",
+   "relation": "imports",
+   "names": [
+    "JPartyStyle"
+   ]
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "module:jparty.utils",
+   "relation": "imports",
+   "names": [
+    "resource_path"
+   ]
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "module:jparty.logger",
+   "relation": "imports",
+   "names": [
+    "qt_exception_hook"
+   ]
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "module:jparty.constants",
+   "relation": "imports",
+   "names": [
+    "PORT"
+   ]
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "function:jparty.main.check_internet",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "function:jparty.main.permission_error",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "function:jparty.main.audio_error",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "function:jparty.main.check_second_monitor",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.main",
+   "target": "function:jparty.main.main",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.main_display",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.main_display",
+   "target": "module:jparty.board_widget",
+   "relation": "imports",
+   "names": [
+    "BoardWidget"
+   ]
+  },
+  {
+   "source": "module:jparty.main_display",
+   "target": "module:jparty.scoreboard",
+   "relation": "imports",
+   "names": [
+    "ScoreBoard",
+    "HostScoreBoard"
+   ]
+  },
+  {
+   "source": "module:jparty.main_display",
+   "target": "module:jparty.borders",
+   "relation": "imports",
+   "names": [
+    "Borders",
+    "HostBorders"
+   ]
+  },
+  {
+   "source": "module:jparty.main_display",
+   "target": "module:jparty.question_widget",
+   "relation": "imports",
+   "names": [
+    "QuestionWidget",
+    "DailyDoubleWidget",
+    "FinalJeopardyWidget",
+    "HostQuestionWidget",
+    "HostDailyDoubleWidget",
+    "HostFinalJeopardyWidget"
+   ]
+  },
+  {
+   "source": "module:jparty.main_display",
+   "target": "module:jparty.settings",
+   "relation": "imports",
+   "names": [
+    "InGameSettingsDialog",
+    "PlayerSettingsDialog"
+   ]
+  },
+  {
+   "source": "module:jparty.main_display",
+   "target": "module:jparty.final_display",
+   "relation": "imports",
+   "names": [
+    "FinalDisplay"
+   ]
+  },
+  {
+   "source": "module:jparty.main_display",
+   "target": "module:jparty.welcome_widget",
+   "relation": "imports",
+   "names": [
+    "Welcome",
+    "QRWidget"
+   ]
+  },
+  {
+   "source": "module:jparty.main_display",
+   "target": "module:jparty.utils",
+   "relation": "imports",
+   "names": [
+    "resource_path"
+   ]
+  },
+  {
+   "source": "module:jparty.main_display",
+   "target": "package:logging",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.main_display",
+   "target": "class:DisplayWindow",
+   "relation": "defines"
+  },
+  {
+   "source": "class:DisplayWindow",
+   "target": "extclass:QMainWindow",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.main_display",
+   "target": "class:HostDisplayWindow",
+   "relation": "defines"
+  },
+  {
+   "source": "class:HostDisplayWindow",
+   "target": "class:DisplayWindow",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.question_widget",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.question_widget",
+   "target": "module:jparty.style",
+   "relation": "imports",
+   "names": [
+    "MyLabel",
+    "CARDPAL"
+   ]
+  },
+  {
+   "source": "module:jparty.question_widget",
+   "target": "class:QuestionWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:QuestionWidget",
+   "target": "extclass:QWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.question_widget",
+   "target": "class:HostQuestionWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:HostQuestionWidget",
+   "target": "class:QuestionWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.question_widget",
+   "target": "class:DailyDoubleWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:DailyDoubleWidget",
+   "target": "class:QuestionWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.question_widget",
+   "target": "class:HostDailyDoubleWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:HostDailyDoubleWidget",
+   "target": "class:HostQuestionWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "class:HostDailyDoubleWidget",
+   "target": "class:DailyDoubleWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.question_widget",
+   "target": "class:FinalJeopardyWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:FinalJeopardyWidget",
+   "target": "class:QuestionWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.question_widget",
+   "target": "class:HostFinalJeopardyWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:HostFinalJeopardyWidget",
+   "target": "class:FinalJeopardyWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "class:HostFinalJeopardyWidget",
+   "target": "class:HostQuestionWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "package:requests",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "package:bs4",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "package:html",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "package:re",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "package:json",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "module:jparty.game",
+   "relation": "imports",
+   "names": [
+    "Question",
+    "Board",
+    "FinalBoard",
+    "GameData"
+   ]
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "package:logging",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "package:csv",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "module:jparty.constants",
+   "relation": "imports",
+   "names": [
+    "MONIES"
+   ]
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "function:jparty.retrieve.list_to_game",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "function:jparty.retrieve.get_Gsheet_game",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "class:RetrievalException",
+   "relation": "defines"
+  },
+  {
+   "source": "class:RetrievalException",
+   "target": "extclass:Exception",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "class:IncompleteException",
+   "relation": "defines"
+  },
+  {
+   "source": "class:IncompleteException",
+   "target": "extclass:Exception",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "function:jparty.retrieve.get_game",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "function:jparty.retrieve.get_jarchive_game",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "function:jparty.retrieve.get_wayback_game",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "function:jparty.retrieve.findanswer",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "function:jparty.retrieve.get_generic_game",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "function:jparty.retrieve.get_game_sum",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.retrieve",
+   "target": "function:jparty.retrieve.get_random_game",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.scoreboard",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.scoreboard",
+   "target": "package:time",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.scoreboard",
+   "target": "package:threading",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.scoreboard",
+   "target": "package:base64",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.scoreboard",
+   "target": "package:functools",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.scoreboard",
+   "target": "module:jparty.style",
+   "relation": "imports",
+   "names": [
+    "MyLabel"
+   ]
+  },
+  {
+   "source": "module:jparty.scoreboard",
+   "target": "module:jparty.utils",
+   "relation": "imports",
+   "names": [
+    "resource_path"
+   ]
+  },
+  {
+   "source": "module:jparty.scoreboard",
+   "target": "class:NameLabel",
+   "relation": "defines"
+  },
+  {
+   "source": "class:NameLabel",
+   "target": "class:MyLabel",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.scoreboard",
+   "target": "class:PlayerWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:PlayerWidget",
+   "target": "extclass:QWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.scoreboard",
+   "target": "class:HostPlayerWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:HostPlayerWidget",
+   "target": "class:PlayerWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.scoreboard",
+   "target": "class:ScoreBoard",
+   "relation": "defines"
+  },
+  {
+   "source": "class:ScoreBoard",
+   "target": "extclass:QWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.scoreboard",
+   "target": "class:HostScoreBoard",
+   "relation": "defines"
+  },
+  {
+   "source": "class:HostScoreBoard",
+   "target": "class:ScoreBoard",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.settings",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.settings",
+   "target": "package:functools",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.settings",
+   "target": "package:logging",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.settings",
+   "target": "module:jparty.welcome_widget",
+   "relation": "imports",
+   "names": [
+    "StartWidget"
+   ]
+  },
+  {
+   "source": "module:jparty.settings",
+   "target": "module:jparty.utils",
+   "relation": "imports",
+   "names": [
+    "add_shadow",
+    "resource_path"
+   ]
+  },
+  {
+   "source": "module:jparty.settings",
+   "target": "module:jparty.style",
+   "relation": "imports",
+   "names": [
+    "WINDOWPAL"
+   ]
+  },
+  {
+   "source": "module:jparty.settings",
+   "target": "class:SettingsDialog",
+   "relation": "defines"
+  },
+  {
+   "source": "class:SettingsDialog",
+   "target": "class:StartWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.settings",
+   "target": "class:PlayerSettingsDialog",
+   "relation": "defines"
+  },
+  {
+   "source": "class:PlayerSettingsDialog",
+   "target": "class:SettingsDialog",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.settings",
+   "target": "class:NewPlayersPopup",
+   "relation": "defines"
+  },
+  {
+   "source": "class:NewPlayersPopup",
+   "target": "extclass:QDialog",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.settings",
+   "target": "class:InGameSettingsDialog",
+   "relation": "defines"
+  },
+  {
+   "source": "class:InGameSettingsDialog",
+   "target": "class:SettingsDialog",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.style",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.style",
+   "target": "module:jparty.utils",
+   "relation": "imports",
+   "names": [
+    "DynamicLabel",
+    "add_shadow"
+   ]
+  },
+  {
+   "source": "module:jparty.style",
+   "target": "class:JPartyStyle",
+   "relation": "defines"
+  },
+  {
+   "source": "class:JPartyStyle",
+   "target": "extclass:QCommonStyle",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.style",
+   "target": "class:MyLabel",
+   "relation": "defines"
+  },
+  {
+   "source": "class:MyLabel",
+   "target": "class:DynamicLabel",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "package:simpleaudio",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "package:threading",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "package:re",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "package:os",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "package:sys",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "function:jparty.utils.resource_path",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "class:SongPlayer",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "class:CompoundObject",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "function:jparty.utils.add_shadow",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "class:AutosizeWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "class:DynamicLabel",
+   "relation": "defines"
+  },
+  {
+   "source": "class:DynamicLabel",
+   "target": "extclass:QLabel",
+   "relation": "inherits"
+  },
+  {
+   "source": "class:DynamicLabel",
+   "target": "class:AutosizeWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "class:DynamicButton",
+   "relation": "defines"
+  },
+  {
+   "source": "class:DynamicButton",
+   "target": "extclass:QPushButton",
+   "relation": "inherits"
+  },
+  {
+   "source": "class:DynamicButton",
+   "target": "class:AutosizeWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.utils",
+   "target": "class:DDWagerDialog",
+   "relation": "defines"
+  },
+  {
+   "source": "class:DDWagerDialog",
+   "target": "extclass:QDialog",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "package:PyQt6",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "package:qrcode",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "package:time",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "package:threading",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "package:logging",
+   "relation": "uses"
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "module:jparty.version",
+   "relation": "imports",
+   "names": [
+    "version"
+   ]
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "module:jparty.retrieve",
+   "relation": "imports",
+   "names": [
+    "get_game",
+    "get_random_game",
+    "IncompleteException"
+   ]
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "module:jparty.utils",
+   "relation": "imports",
+   "names": [
+    "resource_path",
+    "add_shadow",
+    "DynamicLabel",
+    "DynamicButton"
+   ]
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "module:jparty.helpmsg",
+   "relation": "imports",
+   "names": [
+    "helpmsg"
+   ]
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "module:jparty.style",
+   "relation": "imports",
+   "names": [
+    "WINDOWPAL"
+   ]
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "class:QRImage",
+   "relation": "defines"
+  },
+  {
+   "source": "class:QRImage",
+   "target": "extclass:qrcode.image.base.BaseImage",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "class:StartWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:StartWidget",
+   "target": "extclass:QWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "class:Welcome",
+   "relation": "defines"
+  },
+  {
+   "source": "class:Welcome",
+   "target": "class:StartWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:jparty.welcome_widget",
+   "target": "class:QRWidget",
+   "relation": "defines"
+  },
+  {
+   "source": "class:QRWidget",
+   "target": "class:StartWidget",
+   "relation": "inherits"
+  },
+  {
+   "source": "module:run",
+   "target": "module:jparty.main",
+   "relation": "imports",
+   "names": [
+    "main"
+   ]
+  },
+  {
+   "source": "function:jparty.main.main",
+   "target": "class:Game",
+   "relation": "creates",
+   "note": "single game state object",
+   "curated": true
+  },
+  {
+   "source": "function:jparty.main.main",
+   "target": "class:BuzzerController",
+   "relation": "creates",
+   "note": "starts tornado on port 8080 in a daemon thread",
+   "curated": true
+  },
+  {
+   "source": "function:jparty.main.main",
+   "target": "class:DisplayWindow",
+   "relation": "creates",
+   "note": "player-facing board, screen index 1",
+   "curated": true
+  },
+  {
+   "source": "function:jparty.main.main",
+   "target": "class:HostDisplayWindow",
+   "relation": "creates",
+   "note": "host view, screen index 0",
+   "curated": true
+  },
+  {
+   "source": "class:Game",
+   "target": "class:BuzzerController",
+   "relation": "holds",
+   "note": "Game.buzzer_controller",
+   "curated": true
+  },
+  {
+   "source": "class:Game",
+   "target": "class:KeystrokeManager",
+   "relation": "holds",
+   "note": "space / left / right key bindings, activated per game state",
+   "curated": true
+  },
+  {
+   "source": "class:Game",
+   "target": "class:SongPlayer",
+   "relation": "holds",
+   "note": "theme + Final Jeopardy music",
+   "curated": true
+  },
+  {
+   "source": "class:Game",
+   "target": "class:CompoundObject",
+   "relation": "holds",
+   "note": "Game.dc fans every call out to both display windows",
+   "curated": true
+  },
+  {
+   "source": "class:Game",
+   "target": "class:GameData",
+   "relation": "holds",
+   "note": "Game.data, set by the Welcome widget",
+   "curated": true
+  },
+  {
+   "source": "class:Game",
+   "target": "class:QuestionTimer",
+   "relation": "creates",
+   "note": "4 s buzz window, 31 s Final Jeopardy",
+   "curated": true
+  },
+  {
+   "source": "class:Game",
+   "target": "class:DDWagerDialog",
+   "relation": "creates",
+   "note": "Daily Double wager prompt on host screen",
+   "curated": true
+  },
+  {
+   "source": "class:GameData",
+   "target": "class:Board",
+   "relation": "contains",
+   "note": "rounds[0], rounds[1]",
+   "curated": true
+  },
+  {
+   "source": "class:GameData",
+   "target": "class:FinalBoard",
+   "relation": "contains",
+   "note": "rounds[2]",
+   "curated": true
+  },
+  {
+   "source": "class:Board",
+   "target": "class:Question",
+   "relation": "contains",
+   "note": "30 clues per board",
+   "curated": true
+  },
+  {
+   "source": "class:BuzzerController",
+   "target": "class:Application",
+   "relation": "creates",
+   "note": "tornado app",
+   "curated": true
+  },
+  {
+   "source": "class:Application",
+   "target": "class:WelcomeHandler",
+   "relation": "routes",
+   "note": "GET /",
+   "curated": true
+  },
+  {
+   "source": "class:Application",
+   "target": "class:BuzzerHandler",
+   "relation": "routes",
+   "note": "POST /play (renders play.html, which does not exist)",
+   "curated": true
+  },
+  {
+   "source": "class:Application",
+   "target": "class:BuzzerSocketHandler",
+   "relation": "routes",
+   "note": "WS /buzzersocket",
+   "curated": true
+  },
+  {
+   "source": "class:BuzzerSocketHandler",
+   "target": "class:Player",
+   "relation": "creates",
+   "note": "on NAME message",
+   "curated": true
+  },
+  {
+   "source": "class:Player",
+   "target": "class:BuzzerSocketHandler",
+   "relation": "holds",
+   "note": "Player.waiter is the phone's socket",
+   "curated": true
+  },
+  {
+   "source": "class:BuzzerController",
+   "target": "class:Game",
+   "relation": "signals",
+   "note": "buzz_trigger, wager_trigger, new_player_trigger (Qt signals cross from tornado thread to GUI thread)",
+   "curated": true
+  },
+  {
+   "source": "class:DisplayWindow",
+   "target": "class:BoardWidget",
+   "relation": "contains",
+   "note": "",
+   "curated": true
+  },
+  {
+   "source": "class:DisplayWindow",
+   "target": "class:ScoreBoard",
+   "relation": "contains",
+   "note": "",
+   "curated": true
+  },
+  {
+   "source": "class:DisplayWindow",
+   "target": "class:Borders",
+   "relation": "contains",
+   "note": "",
+   "curated": true
+  },
+  {
+   "source": "class:DisplayWindow",
+   "target": "class:QRWidget",
+   "relation": "contains",
+   "note": "start menu on player screen",
+   "curated": true
+  },
+  {
+   "source": "class:DisplayWindow",
+   "target": "class:QuestionWidget",
+   "relation": "creates",
+   "note": "swapped in for the board while a clue is open",
+   "curated": true
+  },
+  {
+   "source": "class:DisplayWindow",
+   "target": "class:FinalDisplay",
+   "relation": "creates",
+   "note": "Final Jeopardy judging overlay",
+   "curated": true
+  },
+  {
+   "source": "class:HostDisplayWindow",
+   "target": "class:Welcome",
+   "relation": "contains",
+   "note": "start menu on host screen",
+   "curated": true
+  },
+  {
+   "source": "class:HostDisplayWindow",
+   "target": "class:HostScoreBoard",
+   "relation": "contains",
+   "note": "",
+   "curated": true
+  },
+  {
+   "source": "class:HostDisplayWindow",
+   "target": "class:HostBorders",
+   "relation": "contains",
+   "note": "",
+   "curated": true
+  },
+  {
+   "source": "class:HostDisplayWindow",
+   "target": "class:InGameSettingsDialog",
+   "relation": "creates",
+   "note": "gear button",
+   "curated": true
+  },
+  {
+   "source": "class:HostDisplayWindow",
+   "target": "class:PlayerSettingsDialog",
+   "relation": "creates",
+   "note": "click a podium",
+   "curated": true
+  },
+  {
+   "source": "class:HostDisplayWindow",
+   "target": "class:KeystrokeManager",
+   "relation": "calls",
+   "note": "keyPressEvent forwards every key",
+   "curated": true
+  },
+  {
+   "source": "class:BoardWidget",
+   "target": "class:CategoryCard",
+   "relation": "contains",
+   "note": "6",
+   "curated": true
+  },
+  {
+   "source": "class:BoardWidget",
+   "target": "class:QuestionCard",
+   "relation": "contains",
+   "note": "30 (HostQuestionCard on host)",
+   "curated": true
+  },
+  {
+   "source": "class:HostQuestionCard",
+   "target": "class:Game",
+   "relation": "calls",
+   "note": "click -> Game.load_question",
+   "curated": true
+  },
+  {
+   "source": "class:ScoreBoard",
+   "target": "class:PlayerWidget",
+   "relation": "contains",
+   "note": "one podium per player",
+   "curated": true
+  },
+  {
+   "source": "class:Welcome",
+   "target": "function:jparty.retrieve.get_game",
+   "relation": "calls",
+   "note": "background thread on every textbox edit",
+   "curated": true
+  },
+  {
+   "source": "class:Welcome",
+   "target": "function:jparty.retrieve.get_random_game",
+   "relation": "calls",
+   "note": "Random button",
+   "curated": true
+  },
+  {
+   "source": "function:jparty.retrieve.get_game",
+   "target": "function:jparty.retrieve.get_jarchive_game",
+   "relation": "calls",
+   "note": "ID shorter than 7 chars",
+   "curated": true
+  },
+  {
+   "source": "function:jparty.retrieve.get_game",
+   "target": "function:jparty.retrieve.get_wayback_game",
+   "relation": "calls",
+   "note": "fallback when J-Archive fails",
+   "curated": true
+  },
+  {
+   "source": "function:jparty.retrieve.get_game",
+   "target": "function:jparty.retrieve.get_Gsheet_game",
+   "relation": "calls",
+   "note": "ID of 7+ chars",
+   "curated": true
+  },
+  {
+   "source": "function:jparty.retrieve.get_generic_game",
+   "target": "service:j-archive",
+   "relation": "fetches",
+   "note": "HTML scrape via BeautifulSoup",
+   "curated": true
+  },
+  {
+   "source": "function:jparty.retrieve.get_wayback_game",
+   "target": "service:wayback",
+   "relation": "fetches",
+   "note": "CDX API then archived page",
+   "curated": true
+  },
+  {
+   "source": "function:jparty.retrieve.get_Gsheet_game",
+   "target": "service:google-sheets",
+   "relation": "fetches",
+   "note": "CSV",
+   "curated": true
+  },
+  {
+   "source": "function:jparty.retrieve.get_random_game",
+   "target": "service:j-archive",
+   "relation": "fetches",
+   "note": "homepage splash link",
+   "curated": true
+  },
+  {
+   "source": "client:phone",
+   "target": "class:BuzzerSocketHandler",
+   "relation": "sends",
+   "note": "BUZZ, NAME, CHECK_IF_EXISTS, WAGER, ANSWER",
+   "curated": true
+  },
+  {
+   "source": "class:BuzzerSocketHandler",
+   "target": "client:phone",
+   "relation": "sends",
+   "note": "TOKEN, NEW, EXISTS, GAMESTARTED, FULL, PROMPTWAGER, BACK, PROMPTANSWER, TOOLATE",
+   "curated": true
+  }
+ ]
+}
