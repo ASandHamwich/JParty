@@ -26,7 +26,7 @@ To minimise latency, the server checks for the substring `BUZZ` in the raw messa
 | Message | Payload | Effect |
 | --- | --- | --- |
 | `CHECK_IF_EXISTS` | token (hex) | Sent on connect if a `token` cookie exists. Server replies `EXISTS` or `NEW`. |
-| `NAME` | typed name, or a `data:image/png;base64,…` signature | Creates a `Player`. Replies `TOKEN`, `GAMESTARTED` or `FULL`. |
+| `NAME` | typed name, or a `data:image/png;base64,…` signature | Creates a `Player`. Replies `TOKEN`, `GAMESTARTED` or `GAMEFULL`. |
 | `BUZZ` | none | Emits `Game.buzz_trigger(player_index)`. |
 | `WAGER` | integer as string | Emits `Game.wager_trigger(player_index, amount)`. |
 | `ANSWER` | text | Stores `player.finalanswer`. |
@@ -39,7 +39,7 @@ To minimise latency, the server checks for the substring `BUZZ` in the raw messa
 | `TOKEN` | token (hex) | Store as a 24-hour cookie; show the buzzer |
 | `EXISTS` | JSON `{"page", "score"}` | Restore the page the player was on |
 | `GAMESTARTED` | none | Alert "Game has started!" |
-| `FULL` | none | Sent when 8 players are connected (the client listens for `GAMEFULL` instead, see [known-issues.md](known-issues.md)) |
+| `GAMEFULL` | none | Sent when 8 players are connected. Alert "Game has too many players!", then reload |
 | `PROMPTWAGER` | max wager (`max(score, 0)`) | Show the wager form |
 | `BACK` | none | Return to the buzzer (sent when leaving the final via Previous round) |
 | `PROMPTANSWER` | none | Show the answer form |

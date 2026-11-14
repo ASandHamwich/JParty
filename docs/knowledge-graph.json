@@ -2823,7 +2823,7 @@
    "source": "class:BuzzerSocketHandler",
    "target": "client:phone",
    "relation": "sends",
-   "note": "TOKEN, NEW, EXISTS, GAMESTARTED, FULL, PROMPTWAGER, BACK, PROMPTANSWER, TOOLATE",
+   "note": "TOKEN, NEW, EXISTS, GAMESTARTED, GAMEFULL, PROMPTWAGER, BACK, PROMPTANSWER, TOOLATE",
    "curated": true
   }
  ]

@@ -288,15 +288,22 @@ class Game(QObject):
         self.host_display.borders.spacehints(val)
 
     def new_player(self):
-        new_players = set(self.buzzer_controller.connected_players) - set(self.players)
+        # self.players aliases connected_players after the first join, so new
+        # arrivals are found by who doesn't have a podium yet
+        known_players = [
+            pw.player for pw in self.host_display.scoreboard.player_widgets
+        ]
+        new_players = [
+            p
+            for p in self.buzzer_controller.connected_players
+            if p not in known_players
+        ]
         self.players = self.buzzer_controller.connected_players
         self.dc.scoreboard.refresh_players()
         if not self.game_started():
             self.host_display.welcome_widget.check_start()
         if self.is_final():
-            self.controller.open_wagers(new_players)
-
-
+            self.buzzer_controller.open_wagers(new_players)
 
     def remove_player(self, player):
         self.players.remove(player)

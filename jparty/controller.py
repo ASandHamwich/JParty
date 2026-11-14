@@ -117,7 +117,7 @@ class BuzzerSocketHandler(tornado.websocket.WebSocketHandler):
             return
 
         if len(self.controller.connected_players) >= MAXPLAYERS:
-            self.send("FULL")
+            self.send("GAMEFULL")
             return
 
         self.player = Player(name, self)
