@@ -93,6 +93,8 @@ Pictures are not supported.
 | --- | --- |
 | "Two monitors needed!" | Connect a second screen and turn off mirroring, then reopen JParty. |
 | "Cannot connect!" | The computer has no internet. JParty needs it to download the questions. |
+| "Audio error" | JParty could not find a speaker or sound output. Check that one is connected and selected in your computer's sound settings, then reopen JParty. |
+| "Permission Error" | Your computer would not let JParty open the connection the phones use. Check your firewall or security software, then reopen JParty. |
 | The QR code does not open anything | Make sure the phone is on the same Wi-Fi as the computer. Guest and public networks often block devices from seeing each other; try another network, or connect everything to one phone's hotspot. Also check that the computer's firewall allows JParty. |
 | The phone page loads but looks broken | The phone needs internet access too, not just the local Wi-Fi. |
 | Phone says "Game has started!" | The host must click the gear icon → **Allow new players**. |
@@ -135,6 +137,14 @@ On a Mac or Linux, after the first setup (with either method), you can start JPa
 ```
 
 It updates the setup if needed, when uv is installed, and opens JParty from the right folder for you.
+
+### What to expect when it starts
+
+Once JParty opens, everything works as described in [Step 3](#step-3-start-a-game). A few things are different from the downloaded app:
+
+- **The network question names Python, not JParty.** On a Mac, the first time you run it, a box may ask whether **Python** may accept incoming network connections. Click **Allow**, or the phones cannot connect.
+- **The terminal window stays busy** for as long as the game is open. Leave it open. To quit, close the JParty window, or click in the terminal and press **Ctrl+C**.
+- **If it closes straight away**, read the message it showed (see [Troubleshooting](#troubleshooting)). The file `jparty/latest.log` records what happened during the last run; it is replaced each time JParty starts.
 
 On Linux, install the audio headers first: `sudo apt-get install libasound2-dev`.
 
