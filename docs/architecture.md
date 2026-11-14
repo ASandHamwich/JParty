@@ -173,7 +173,7 @@ Google Sheet layout expected by `list_to_game` (1-indexed rows, as in the spread
 - [JParty.spec](../JParty.spec): PyInstaller spec. Bundles `jparty/data/*` as `data/` and `jparty/buzzer` as `buzzer/`; builds a `.app` bundle on macOS.
 - [compile](../compile): local macOS helper that builds and zips for the current architecture.
 - [.github/workflows/main.yml](../.github/workflows/main.yml): manually triggered; builds Linux, Windows, macOS arm64 and macOS x86 with Python 3.11.
-- Dependencies are pinned in [requirements.txt](../requirements.txt) and mirrored in [environment.yml](../environment.yml).
+- Dependencies are pinned in [pyproject.toml](../pyproject.toml) (locked in `uv.lock`) and mirrored in [requirements.txt](../requirements.txt), which the release workflow installs from, and [environment.yml](../environment.yml). The project version in `pyproject.toml` is read from `jparty/version.py`.
 - There are no automated tests.
 
 ## Tunables

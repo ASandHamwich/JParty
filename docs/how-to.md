@@ -118,6 +118,16 @@ python ../run.py
 
 The last two lines matter: JParty must be started **from inside the `jparty` folder**, or it will not find its sounds and images.
 
+If you have the [uv](https://docs.astral.sh/uv/) tool installed, it can do the setup for you, including fetching the right Python version:
+
+```
+git clone https://github.com/stuartthomas25/JParty.git
+cd JParty
+uv sync
+cd jparty
+../.venv/bin/python ../run.py      # on Windows: ..\.venv\Scripts\python ..\run.py
+```
+
 On Linux, install the audio headers first: `sudo apt-get install libasound2-dev`.
 
 To build a standalone app yourself, run `pyinstaller -y JParty.spec` from the top folder. The result appears in `dist/`.
