@@ -50,10 +50,12 @@ stateDiagram-v2
 Details:
 
 - `open_responses` lights the borders, sleeps `BUZZER_DELAY` (0.25 s), then sets `accepting_responses`. The 4-second timer pauses while someone is answering and resumes after a wrong answer.
+- An accepted buzz plays `buzz.wav` (`Game.buzz_sound`, loaded once in `__init__`) before anything else, to keep it in time with the press.
 - `buzz` ignores the player stored in `previous_answerer`, i.e. only the most recent answerer is locked out.
 - A buzz while no clue is open just blinks that player's podium, which is useful for testing phones in the lobby.
 - Daily Double: `soliciting_player` is set, so clicking a podium calls `get_dd_wager`. Maximum wager is `max(score, 1000)`. Cancelling the dialog lets the host choose a different player. A wrong Daily Double answer returns straight to the board.
 - Entering round 2, the player with the lowest score gets the "in control" glow on the host screen.
+- A category whose name is blank is not played (custom games with fewer than 6 categories). `Board.__init__` marks its clues complete, so the round ends without them, and `BoardWidget.load_round` hides the column (`show_column`) so the others fill the board. `BoardWidget.clear` shows every column again.
 - The gear dialog's Next/Previous round buttons call `next_round` / `prev_round` directly, regardless of how many clues remain.
 - With `PLAY_FINAL = False` in [constants.py](../jparty/constants.py), `next_round` from round 2 calls `end_without_final` instead of loading the final: it sets `final_skipped`, overlays the `FinalDisplay` on the round 2 board and calls `end_game`, which lights the winner's podium and activates `CLOSE_GAME`. `current_round` stays on round 2, so `is_final()` stays false and no wagers are requested. While `final_skipped` is set the gear dialog disables Next round, and Previous round removes the winner overlay, turns off the podium lights and deactivates `CLOSE_GAME`, leaving the round 2 board. The game data must still contain a final clue, since `valid_game` checks every round.
 

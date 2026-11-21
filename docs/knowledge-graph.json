@@ -5,7 +5,7 @@
    "id": "module:jparty.board_widget",
    "type": "module",
    "path": "jparty/board_widget.py",
-   "lines": 188
+   "lines": 199
   },
   {
    "id": "module:jparty.borders",
@@ -41,7 +41,7 @@
    "id": "module:jparty.game",
    "type": "module",
    "path": "jparty/game.py",
-   "lines": 667
+   "lines": 678
   },
   {
    "id": "module:jparty.helpmsg",
@@ -199,6 +199,7 @@
    "methods": [
     "__init__",
     "load_round",
+    "show_column",
     "resizeEvent",
     "set_category",
     "set_question",
@@ -448,6 +449,7 @@
    "line": 131,
    "methods": [
     "__init__",
+    "column_in_use",
     "get_question",
     "complete"
    ]
@@ -456,7 +458,7 @@
    "id": "class:FinalBoard",
    "type": "class",
    "module": "jparty.game",
-   "line": 152,
+   "line": 161,
    "methods": [
     "__init__",
     "complete"
@@ -466,14 +468,14 @@
    "id": "class:GameData",
    "type": "class",
    "module": "jparty.game",
-   "line": 165,
+   "line": 174,
    "methods": []
   },
   {
    "id": "class:Game",
    "type": "class",
    "module": "jparty.game",
-   "line": 171,
+   "line": 180,
    "methods": [
     "__init__",
     "startable",
@@ -531,7 +533,7 @@
    "id": "class:Player",
    "type": "class",
    "module": "jparty.game",
-   "line": 653,
+   "line": 664,
    "methods": [
     "__init__",
     "__hash__",

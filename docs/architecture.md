@@ -66,12 +66,12 @@ Importing [jparty/logger.py](../jparty/logger.py) installs a global `sys.excepth
 | --- | --- | --- |
 | [run.py](../run.py) | 5 | Entry point; calls `jparty.main.main()`. |
 | [main.py](../jparty/main.py) | 113 | Startup checks and wiring. |
-| [game.py](../jparty/game.py) | 667 | `Game` (state machine and rules), data classes (`Question`, `Board`, `FinalBoard`, `GameData`, `Player`), `KeystrokeManager`, `QuestionTimer`. |
+| [game.py](../jparty/game.py) | 678 | `Game` (state machine and rules), data classes (`Question`, `Board`, `FinalBoard`, `GameData`, `Player`), `KeystrokeManager`, `QuestionTimer`. |
 | [controller.py](../jparty/controller.py) | 243 | Tornado app, HTTP and WebSocket handlers, `BuzzerController`. |
 | [retrieve.py](../jparty/retrieve.py) | 188 | Download and parse games. |
 | [main_display.py](../jparty/main_display.py) | 277 | `DisplayWindow` and `HostDisplayWindow`. |
 | [welcome_widget.py](../jparty/welcome_widget.py) | 337 | Start menu (`Welcome`, host) and QR code (`QRWidget`, players). |
-| [board_widget.py](../jparty/board_widget.py) | 188 | The 6x5 grid of cards and the reveal animation. |
+| [board_widget.py](../jparty/board_widget.py) | 199 | The 6x5 grid of cards (unused columns hidden) and the reveal animation. |
 | [question_widget.py](../jparty/question_widget.py) | 133 | Clue, Daily Double and Final Jeopardy views. |
 | [scoreboard.py](../jparty/scoreboard.py) | 239 | Podiums (`PlayerWidget`) and the scoreboard row. |
 | [borders.py](../jparty/borders.py) | 158 | Side strips: white "buzzers open" lights; key hints on the host. |

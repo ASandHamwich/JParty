@@ -6,7 +6,7 @@ Found by reading the source while writing these docs. None were reproduced by ru
 
 | Where | Issue |
 | --- | --- |
-| [game.py:291](../jparty/game.py#L291) | A player who joins during the final round after everyone else has wagered does not block the game. If the host continues and that player never wagers, judging them fails because `player.wager` is `None`. |
+| [game.py:301](../jparty/game.py#L301) | A player who joins during the final round after everyone else has wagered does not block the game. If the host continues and that player never wagers, judging them fails because `player.wager` is `None`. |
 | [game.py:95](../jparty/game.py#L95) | `KeystrokeManager._activate` calls `e.hint_setter(True)` before checking that it is not `None`, and then calls it a second time. Harmless today because every event has a hint setter. |
 | [main_display.py:236](../jparty/main_display.py#L236) | `HostDisplayWindow.hide_welcome_widgets` calls a `super()` method that does not exist. Never called. |
 | [controller.py:182](../jparty/controller.py#L182) | The `else` branch of `BuzzerController.buzz` uses `self.game` after finding it falsy, and refers to a `buzz_hint_trigger` signal that does not exist. Unreachable in practice. |
@@ -14,8 +14,8 @@ Found by reading the source while writing these docs. None were reproduced by ru
 | [borders.py:57](../jparty/borders.py#L57) | `HostBorders.buzz_hint` references a `__buzz_hint` method that is not defined. Never called. |
 | [scoreboard.py:149](../jparty/scoreboard.py#L149) | `if self.game.modify_players:` tests a bound method, which is always true, so clicking a podium always opens player settings. |
 | [logger.py:49](../jparty/logger.py#L49) | The crash reporter calls `os.uname()`, which does not exist on Windows, so sending a report there would itself fail. |
-| [game.py:345](../jparty/game.py#L345) | Only the most recent wrong answerer is locked out. With three players, A can buzz again after B has also answered wrong. |
-| [game.py:387](../jparty/game.py#L387), [game.py:414](../jparty/game.py#L414) | `prev_round` / `next_round` log an error at the first/last round but carry on. The settings dialog disables the buttons, which hides this. |
+| [game.py:355](../jparty/game.py#L355) | Only the most recent wrong answerer is locked out. With three players, A can buzz again after B has also answered wrong. |
+| [game.py:398](../jparty/game.py#L398), [game.py:425](../jparty/game.py#L425) | `prev_round` / `next_round` log an error at the first/last round but carry on. The settings dialog disables the buttons, which hides this. |
 
 ## Quirks
 

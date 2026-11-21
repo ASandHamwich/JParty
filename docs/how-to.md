@@ -45,7 +45,7 @@ The host uses only the mouse, the **space bar**, and the **left / right arrow ke
 | --- | --- | --- |
 | 1 | Click a dollar amount on the board | The clue appears on both screens. The answer appears on the laptop only. |
 | 2 | Read the clue aloud, then press **Space** | The screen edges light up white: buzzers are open. |
-| 3 | The first player to buzz answers out loud | Their podium lights up and counts down 5 seconds. |
+| 3 | The first player to buzz answers out loud | A buzzer sound plays, and their podium lights up and counts down 5 seconds. |
 | 4 | Press **←** if they were right, **→** if they were wrong | Right: they win the money and the board returns. Wrong: they lose the money and buzzers reopen for the others. |
 | 5 | If nobody buzzes within about 4 seconds, a time-out sound plays. Press **Space** | Back to the board. |
 
@@ -87,6 +87,7 @@ Your question sheet still needs its final clue row filled in, but nobody will se
 
 1. Open the [Google Sheets template](https://docs.google.com/spreadsheets/d/1JqfJ_OgTstaXTyH5nV3_eN6YXqvZ1RviPmN7OwLhG0U/edit?usp=sharing) and make your own copy (File → Make a copy).
 2. Fill in your categories, clues and answers. Keep the layout exactly as it is: 6 categories by 5 clues, for two rounds, plus one final clue.
+   - **Fewer categories?** Leave a category's name empty and it is left out of the game. The other categories spread out to fill the screen. For example, to play with 5, leave the last category name empty in both rounds.
 3. Click Share and set access to **Anyone with the link can view**.
 4. Copy the Sheet ID: the long string of letters and numbers between `/d/` and `/edit` in the sheet's web address.
 5. Paste it into the Game ID box in JParty.

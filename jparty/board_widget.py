@@ -152,10 +152,20 @@ class BoardWidget(QWidget):
             delay = random.randint(0, 5) * QUESTION_REVEAL_TIME + BEFORE_REVEAL_WAIT_TIME
             QTimer.singleShot(delay, partial(self.set_question, x, y, q))
 
+        reveal_order = 0
         for x in range(Board.size[0]):
+            self.show_column(x, round.column_in_use(x))
             gl.itemAtPosition(0, x).widget().setText("")
-            delay = category_delay + x * CATEGORY_REVEAL_TIME
-            QTimer.singleShot(delay, partial(self.set_category, x, round.categories[x]))
+            if round.column_in_use(x):
+                delay = category_delay + reveal_order * CATEGORY_REVEAL_TIME
+                QTimer.singleShot(delay, partial(self.set_category, x, round.categories[x]))
+                reveal_order += 1
+
+    def show_column(self, x, val):
+        # a hidden column with no stretch takes no width, so the others fill the board
+        self.grid_layout.setColumnStretch(x, 1 if val else 0)
+        for y in range(Board.size[1] + 1):
+            self.grid_layout.itemAtPosition(y, x).widget().setVisible(val)
 
     def resizeEvent(self, event):
         self.grid_layout.setSpacing(self.width() // 150)
@@ -179,6 +189,7 @@ class BoardWidget(QWidget):
     def clear(self):
         gl = self.grid_layout
         for x in range(Board.size[0]):
+            self.show_column(x, True)
             for y in range(Board.size[1] + 1):
                 if y == 0:
                     # Categories

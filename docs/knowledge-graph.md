@@ -148,7 +148,7 @@ classDiagram
 | TV screen | `DisplayWindow` and the base classes |
 | Choosing a game | `Welcome` → [retrieve.py](../jparty/retrieve.py) |
 | Buzz window timing | `QuestionTimer`, `QUESTIONTIME`, `BUZZER_DELAY` |
-| Sounds | `SongPlayer` (theme, final) and direct `simpleaudio` calls (`dd.wav`, `applause.wav`, `stumped.wav`, `board_fill.wav`) |
+| Sounds | `SongPlayer` (theme, final) and direct `simpleaudio` calls (`dd.wav`, `applause.wav`, `stumped.wav`, `board_fill.wav`; `Game.buzz_sound` plays `buzz.wav`) |
 | Daily Double | `Question.dd`, `Game.soliciting_player`, `Game.get_dd_wager`, `DDWagerDialog`, `DailyDoubleWidget` |
 | Final round | `FinalBoard`, the `final_*` methods on `Game`, `FinalJeopardyWidget`, `FinalDisplay` |
 | Mid-game admin | [settings.py](../jparty/settings.py) |

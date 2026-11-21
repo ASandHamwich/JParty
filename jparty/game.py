@@ -139,6 +139,15 @@ class Board(object):
         else:
             self.questions = []
 
+        # a custom game can leave a category name blank to play with fewer
+        # than 6; its clues start out complete so they can't be picked
+        for q in self.questions:
+            if not self.column_in_use(q.index[0]):
+                q.complete = True
+
+    def column_in_use(self, x):
+        return self.categories[x].strip() != ""
+
     def get_question(self, i, j):
         for q in self.questions:
             if q.index == (i, j):
@@ -195,6 +204,7 @@ class Game(QObject):
         self.final_skipped = False  # winner shown straight after round 2 (PLAY_FINAL off)
 
         self.song_player = SongPlayer()
+        self.buzz_sound = sa.WaveObject.from_wave_file(resource_path("buzz.wav"))
         self.__judgement_round = 0
         self.__sorted_players = None
 
@@ -345,6 +355,7 @@ class Game(QObject):
         if self.accepting_responses and player is not self.previous_answerer:
             logging.info(f"buzz ({time.time():.6f} s)")
             self.accepting_responses = False
+            self.buzz_sound.play()
             self.timer.pause()
             self.previous_answerer = player
             self.dc.player_widget(player).run_lights()
