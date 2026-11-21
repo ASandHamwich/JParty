@@ -17,7 +17,7 @@
    "id": "module:jparty.constants",
    "type": "module",
    "path": "jparty/constants.py",
-   "lines": 9
+   "lines": 10
   },
   {
    "id": "module:jparty.controller",
@@ -41,7 +41,7 @@
    "id": "module:jparty.game",
    "type": "module",
    "path": "jparty/game.py",
-   "lines": 636
+   "lines": 667
   },
   {
    "id": "module:jparty.helpmsg",
@@ -496,6 +496,7 @@
     "is_final",
     "prev_round",
     "next_round",
+    "end_without_final",
     "start_final",
     "wager",
     "check_all_wagered",
@@ -530,7 +531,7 @@
    "id": "class:Player",
    "type": "class",
    "module": "jparty.game",
-   "line": 622,
+   "line": 653,
    "methods": [
     "__init__",
     "__hash__",
@@ -1530,7 +1531,8 @@
    "names": [
     "FJTIME",
     "QUESTIONTIME",
-    "BUZZER_DELAY"
+    "BUZZER_DELAY",
+    "PLAY_FINAL"
    ]
   },
   {

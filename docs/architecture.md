@@ -66,7 +66,7 @@ Importing [jparty/logger.py](../jparty/logger.py) installs a global `sys.excepth
 | --- | --- | --- |
 | [run.py](../run.py) | 5 | Entry point; calls `jparty.main.main()`. |
 | [main.py](../jparty/main.py) | 113 | Startup checks and wiring. |
-| [game.py](../jparty/game.py) | 636 | `Game` (state machine and rules), data classes (`Question`, `Board`, `FinalBoard`, `GameData`, `Player`), `KeystrokeManager`, `QuestionTimer`. |
+| [game.py](../jparty/game.py) | 667 | `Game` (state machine and rules), data classes (`Question`, `Board`, `FinalBoard`, `GameData`, `Player`), `KeystrokeManager`, `QuestionTimer`. |
 | [controller.py](../jparty/controller.py) | 243 | Tornado app, HTTP and WebSocket handlers, `BuzzerController`. |
 | [retrieve.py](../jparty/retrieve.py) | 188 | Download and parse games. |
 | [main_display.py](../jparty/main_display.py) | 277 | `DisplayWindow` and `HostDisplayWindow`. |
@@ -80,7 +80,7 @@ Importing [jparty/logger.py](../jparty/logger.py) installs a global `sys.excepth
 | [utils.py](../jparty/utils.py) | 304 | `resource_path`, `SongPlayer`, `CompoundObject`, auto-sizing labels, `DDWagerDialog`. |
 | [style.py](../jparty/style.py) | 60 | Qt style, palettes, `MyLabel`. |
 | [logger.py](../jparty/logger.py) | 96 | Logging and crash reporter. |
-| [constants.py](../jparty/constants.py) | 9 | Timings, port, max players, dollar values. |
+| [constants.py](../jparty/constants.py) | 10 | Timings, port, max players, dollar values, whether to play the final round. |
 | [environ.py](../jparty/environ.py), [version.py](../jparty/version.py), [helpmsg.py](../jparty/helpmsg.py) | | Frozen-app root path, version string, help text. |
 | [buzzer/](../jparty/buzzer/) | | Phone client: one HTML template, `buzzer.js`, `style.css`. |
 | [data/](../jparty/data/) | | Sounds, images and font loaded via `resource_path`. |
@@ -188,4 +188,5 @@ All in [constants.py](../jparty/constants.py):
 | `MAXPLAYERS` | 8 | |
 | `PORT` | 8080 | First port tried for the buzzer server |
 | `MONIES` | 200–1000, 400–2000 | Clue values for J-Archive games |
+| `PLAY_FINAL` | True | False skips the final round: after round 2 the winner is shown |
 | `CATEGORY_REVEAL_TIME`, `QUESTION_REVEAL_TIME`, `BEFORE_REVEAL_WAIT_TIME` | 2000, 400, 100 ms | Board reveal animation |

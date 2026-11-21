@@ -212,7 +212,7 @@ class InGameSettingsDialog(SettingsDialog):
     def disable_buttons(self):
         i = self.game.index_of_current_round()
         self.prev_button.setDisabled(i == 0)
-        self.next_button.setDisabled(i == 2)
+        self.next_button.setDisabled(i == 2 or self.game.final_skipped)
 
     def resizeEvent(self, event):
         super().resizeEvent(event)

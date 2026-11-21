@@ -7,3 +7,4 @@ BUZZER_DELAY = 0.25 # in s
 BEFORE_REVEAL_WAIT_TIME = 100 # in ms
 CATEGORY_REVEAL_TIME = 2000 # in ms
 QUESTION_REVEAL_TIME = 400 # in ms
+PLAY_FINAL = False # False ends the game after round 2: the winner is shown instead of the final round

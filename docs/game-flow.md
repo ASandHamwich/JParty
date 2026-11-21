@@ -1,6 +1,6 @@
 # Game flow
 
-All game logic is in the `Game` class in [jparty/game.py](../jparty/game.py). There is no state enum: the current state is the set of key events that `KeystrokeManager` has active, plus a few flags on `Game` (`active_question`, `accepting_responses`, `answering_player`, `soliciting_player`, `current_round`).
+All game logic is in the `Game` class in [jparty/game.py](../jparty/game.py). There is no state enum: the current state is the set of key events that `KeystrokeManager` has active, plus a few flags on `Game` (`active_question`, `accepting_responses`, `answering_player`, `soliciting_player`, `final_skipped`, `current_round`).
 
 ## Key events
 
@@ -18,7 +18,7 @@ Registered in `Game.__init__`. Each fires once and deactivates itself.
 | `FINAL_NEXT_PLAYER` | Space | `final_next_player` | The music ended, or a final answer was judged |
 | `FINAL_SHOW_ANSWER` | Space | `final_show_answer` | A player is up for judgement |
 | `FINAL_CORRECT_ANSWER` / `FINAL_INCORRECT_ANSWER` | ← / → | `final_correct_answer` / `final_incorrect_answer` | That player's answer is revealed |
-| `CLOSE_GAME` | Space | `close_game` | The winner is showing |
+| `CLOSE_GAME` | Space | `close_game` | The winner is showing (after the final, or after round 2 when `PLAY_FINAL` is off) |
 
 Activating an event also calls its hint setter (`spacehints` or `arrowhints`), which flashes the key image in the host's side borders.
 
@@ -43,6 +43,8 @@ stateDiagram-v2
 
     Board --> Board: Space when all clues done (next_round)
     Board --> Final: next_round from round 2
+    Board --> Winner: next_round from round 2, PLAY_FINAL off (end_without_final)
+    Winner --> [*]: Space (close_game)
 ```
 
 Details:
@@ -53,6 +55,7 @@ Details:
 - Daily Double: `soliciting_player` is set, so clicking a podium calls `get_dd_wager`. Maximum wager is `max(score, 1000)`. Cancelling the dialog lets the host choose a different player. A wrong Daily Double answer returns straight to the board.
 - Entering round 2, the player with the lowest score gets the "in control" glow on the host screen.
 - The gear dialog's Next/Previous round buttons call `next_round` / `prev_round` directly, regardless of how many clues remain.
+- With `PLAY_FINAL = False` in [constants.py](../jparty/constants.py), `next_round` from round 2 calls `end_without_final` instead of loading the final: it sets `final_skipped`, overlays the `FinalDisplay` on the round 2 board and calls `end_game`, which lights the winner's podium and activates `CLOSE_GAME`. `current_round` stays on round 2, so `is_final()` stays false and no wagers are requested. While `final_skipped` is set the gear dialog disables Next round, and Previous round removes the winner overlay, turns off the podium lights and deactivates `CLOSE_GAME`, leaving the round 2 board. The game data must still contain a final clue, since `valid_game` checks every round.
 
 ## Final round
 

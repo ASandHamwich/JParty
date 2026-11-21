@@ -14,7 +14,7 @@ from collections.abc import Iterable
 import logging
 
 from jparty.utils import SongPlayer, resource_path, CompoundObject, DDWagerDialog
-from jparty.constants import FJTIME, QUESTIONTIME, BUZZER_DELAY
+from jparty.constants import FJTIME, QUESTIONTIME, BUZZER_DELAY, PLAY_FINAL
 
 
 class QuestionTimer(object):
@@ -192,6 +192,7 @@ class Game(QObject):
         self.previous_answerer = None
         self.timer = None
         self.soliciting_player = False  # part of selecting who found a daily double
+        self.final_skipped = False  # winner shown straight after round 2 (PLAY_FINAL off)
 
         self.song_player = SongPlayer()
         self.__judgement_round = 0
@@ -385,6 +386,15 @@ class Game(QObject):
         if i == 0:
             logging.error("Already at first round")
 
+        if self.final_skipped:
+            # leave the winner screen; the round 2 board is still loaded beneath it
+            self.final_skipped = False
+            self.keystroke_manager.deactivate("CLOSE_GAME")
+            for player in self.players:
+                self.dc.player_widget(player).set_lights(False)
+            self.dc.close_final()
+            return
+
         if self.is_final():
             for player in self.players:
                 self.dc.player_widget(player).set_lights(False)
@@ -403,6 +413,10 @@ class Game(QObject):
         if i == len(self.data.rounds) - 1:
             logging.error("Already at final round")
 
+        if not PLAY_FINAL and isinstance(self.data.rounds[i + 1], FinalBoard):
+            self.end_without_final()
+            return
+
         self.current_round = self.data.rounds[i + 1]
         if self.is_final():
             self.host_display.set_player_in_control(None)
@@ -415,6 +429,15 @@ class Game(QObject):
             self.host_display.set_player_in_control(losing_player)
 
             self.dc.board_widget.load_round(self.current_round)
+
+    def end_without_final(self):
+        if self.final_skipped:
+            return
+        logging.info("skipping final round")
+        self.final_skipped = True
+        self.host_display.set_player_in_control(None)
+        self.dc.load_final_judgement()
+        self.end_game()
 
     def start_final(self):
         logging.info("start final")
@@ -528,6 +551,7 @@ class Game(QObject):
         self.timer = None
         self.data = None
         self.__judgement_round = 0
+        self.final_skipped = False
         self.modify_players(True)
         self.dc.restart()
         self.begin_theme_song()
