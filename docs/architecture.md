@@ -66,13 +66,13 @@ Importing [jparty/logger.py](../jparty/logger.py) installs a global `sys.excepth
 | --- | --- | --- |
 | [run.py](../run.py) | 5 | Entry point; calls `jparty.main.main()`. |
 | [main.py](../jparty/main.py) | 113 | Startup checks and wiring. |
-| [game.py](../jparty/game.py) | 678 | `Game` (state machine and rules), data classes (`Question`, `Board`, `FinalBoard`, `GameData`, `Player`), `KeystrokeManager`, `QuestionTimer`. |
+| [game.py](../jparty/game.py) | 694 | `Game` (state machine and rules), data classes (`Question`, `Board`, `FinalBoard`, `GameData`, `Player`), `KeystrokeManager`, `QuestionTimer`. |
 | [controller.py](../jparty/controller.py) | 243 | Tornado app, HTTP and WebSocket handlers, `BuzzerController`. |
 | [retrieve.py](../jparty/retrieve.py) | 188 | Download and parse games. |
 | [main_display.py](../jparty/main_display.py) | 277 | `DisplayWindow` and `HostDisplayWindow`. |
 | [welcome_widget.py](../jparty/welcome_widget.py) | 337 | Start menu (`Welcome`, host) and QR code (`QRWidget`, players). |
 | [board_widget.py](../jparty/board_widget.py) | 199 | The 6x5 grid of cards (unused columns hidden) and the reveal animation. |
-| [question_widget.py](../jparty/question_widget.py) | 133 | Clue, Daily Double and Final Jeopardy views. |
+| [question_widget.py](../jparty/question_widget.py) | 138 | Clue, Daily Double and Final Jeopardy views. |
 | [scoreboard.py](../jparty/scoreboard.py) | 239 | Podiums (`PlayerWidget`) and the scoreboard row. |
 | [borders.py](../jparty/borders.py) | 158 | Side strips: white "buzzers open" lights; key hints on the host. |
 | [final_display.py](../jparty/final_display.py) | 55 | Final Jeopardy answer/wager/winner overlay. |
@@ -80,7 +80,7 @@ Importing [jparty/logger.py](../jparty/logger.py) installs a global `sys.excepth
 | [utils.py](../jparty/utils.py) | 304 | `resource_path`, `SongPlayer`, `CompoundObject`, auto-sizing labels, `DDWagerDialog`. |
 | [style.py](../jparty/style.py) | 60 | Qt style, palettes, `MyLabel`. |
 | [logger.py](../jparty/logger.py) | 96 | Logging and crash reporter. |
-| [constants.py](../jparty/constants.py) | 10 | Timings, port, max players, dollar values, whether to play the final round. |
+| [constants.py](../jparty/constants.py) | 11 | Timings, port, max players, dollar values, whether to play the final round and reveal answers on the TV. |
 | [environ.py](../jparty/environ.py), [version.py](../jparty/version.py), [helpmsg.py](../jparty/helpmsg.py) | | Frozen-app root path, version string, help text. |
 | [buzzer/](../jparty/buzzer/) | | Phone client: one HTML template, `buzzer.js`, `style.css`. |
 | [data/](../jparty/data/) | | Sounds, images and font loaded via `resource_path`. |
@@ -110,7 +110,7 @@ flowchart TD
 
 ## Design patterns worth knowing
 
-**Host/player class pairs.** Every screen element has a base class used on the player screen and a `Host…` subclass that adds interaction or the answer. `DisplayWindow` has factory methods (`create_score_board`, `create_border_widget`, `create_question_widget`, …) which `HostDisplayWindow` overrides.
+**Host/player class pairs.** Every screen element has a base class used on the player screen and a `Host…` subclass that adds interaction or the answer. `DisplayWindow` has factory methods (`create_score_board`, `create_border_widget`, `create_question_widget`, …) which `HostDisplayWindow` overrides. The one deliberate exception: `QuestionWidget.show_answer` puts the answer on the TV once a clue is over, when `SHOW_ANSWER` is on.
 
 | Player screen | Host screen | What the host version adds |
 | --- | --- | --- |
@@ -188,5 +188,6 @@ All in [constants.py](../jparty/constants.py):
 | `MAXPLAYERS` | 8 | |
 | `PORT` | 8080 | First port tried for the buzzer server |
 | `MONIES` | 200–1000, 400–2000 | Clue values for J-Archive games |
-| `PLAY_FINAL` | True | False skips the final round: after round 2 the winner is shown |
+| `PLAY_FINAL` | False | False skips the final round: after round 2 the winner is shown |
+| `SHOW_ANSWER` | True | After each clue, an extra Space shows the correct answer on the TV |
 | `CATEGORY_REVEAL_TIME`, `QUESTION_REVEAL_TIME`, `BEFORE_REVEAL_WAIT_TIME` | 2000, 400, 100 ms | Board reveal animation |

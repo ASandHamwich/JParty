@@ -46,8 +46,12 @@ The host uses only the mouse, the **space bar**, and the **left / right arrow ke
 | 1 | Click a dollar amount on the board | The clue appears on both screens. The answer appears on the laptop only. |
 | 2 | Read the clue aloud, then press **Space** | The screen edges light up white: buzzers are open. |
 | 3 | The first player to buzz answers out loud | A buzzer sound plays, and their podium lights up and counts down 5 seconds. |
-| 4 | Press **←** if they were right, **→** if they were wrong | Right: they win the money and the board returns. Wrong: they lose the money and buzzers reopen for the others. |
-| 5 | If nobody buzzes within about 4 seconds, a time-out sound plays. Press **Space** | Back to the board. |
+| 4 | Press **←** if they were right, **→** if they were wrong | Right: they win the money. Wrong: they lose the money and buzzers reopen for the others. |
+| 5 | Nobody buzzes within about 4 seconds? Do nothing | A time-out sound plays. |
+| 6 | Once someone is right, or time is up, press **Space** | The correct answer appears on the TV. |
+| 7 | Press **Space** again | Back to the board. |
+
+To skip steps 6 and 7 and keep the answer off the TV, open `jparty/constants.py` in a text editor, change `SHOW_ANSWER = True` to `SHOW_ANSWER = False`, and restart JParty. A right answer then goes straight back to the board, and after a time-out one **Space** does.
 
 Remember: **← left = correct (green), → right = wrong (red).**
 
@@ -56,6 +60,7 @@ Remember: **← left = correct (green), → right = wrong (red).**
 1. The TV shows "DAILY DOUBLE!". On the laptop, **click the podium** of the player who picked the clue.
 2. Ask for their wager and type it in, or click **True Daily Double!** to bet everything.
 3. The clue appears. Read it, hear their answer, then press **←** or **→**.
+4. Press **Space** to show the correct answer on the TV, then **Space** again to return to the board.
 
 ### Moving between rounds
 
@@ -71,7 +76,7 @@ When every clue is gone, press **Space** to go to the next round. To skip ahead 
 
 ### Skipping the final round
 
-To finish after round 2, open the file `jparty/constants.py` in a text editor, change `PLAY_FINAL = True` to `PLAY_FINAL = False`, save it, and restart JParty. When the round 2 board is empty, pressing **Space** shows the winner straight away, with no wagers. Press **Space** again to return to the welcome screen. Change it back to `True` to play the final round again.
+JParty is currently set to finish after round 2. This is controlled by the line `PLAY_FINAL = False` in the file `jparty/constants.py`; to play the final round again, open that file in a text editor, change it to `PLAY_FINAL = True`, save it, and restart JParty. With the final switched off: when the round 2 board is empty, pressing **Space** shows the winner straight away, with no wagers. Press **Space** again to return to the welcome screen.
 
 Your question sheet still needs its final clue row filled in, but nobody will see it. This works when you start JParty from its folder (for example with `./start`), not in a downloaded ready-made app.
 

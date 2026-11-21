@@ -8,3 +8,4 @@ BEFORE_REVEAL_WAIT_TIME = 100 # in ms
 CATEGORY_REVEAL_TIME = 2000 # in ms
 QUESTION_REVEAL_TIME = 400 # in ms
 PLAY_FINAL = False # False ends the game after round 2: the winner is shown instead of the final round
+SHOW_ANSWER = True # True: after each clue, Space shows the correct answer on the TV, then Space again returns to the board

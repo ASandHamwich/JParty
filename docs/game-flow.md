@@ -11,7 +11,8 @@ Registered in `Game.__init__`. Each fires once and deactivates itself.
 | `OPEN_RESPONSES` | Space | `open_responses` | A normal clue is showing and has not been opened yet |
 | `CORRECT_ANSWER` | ← | `correct_answer` | A player has buzzed, or a Daily Double wager is set |
 | `INCORRECT_ANSWER` | → | `incorrect_answer` | Same |
-| `BACK_TO_BOARD` | Space | `back_to_board` | The clue timed out |
+| `SHOW_ANSWER` | Space | `show_answer` | `SHOW_ANSWER` is on and the clue is over: answered correctly, a Daily Double judged, or timed out |
+| `BACK_TO_BOARD` | Space | `back_to_board` | The answer is showing on the TV; with `SHOW_ANSWER` off, the clue timed out |
 | `NEXT_ROUND` | Space | `next_round` | Every clue on the board is complete |
 | `OPEN_FINAL` | Space | `open_final` | Every player has wagered in the final |
 | `FINAL_OPEN_RESPONSES` | Space | `final_open_responses` | The final clue is showing |
@@ -34,12 +35,16 @@ stateDiagram-v2
     ClueShown --> BuzzersOpen: Space (open_responses)
     BuzzersOpen --> Answering: phone BUZZ (buzz)
     BuzzersOpen --> TimedOut: 4 s QuestionTimer (stumped)
-    Answering --> Board: ← correct (+value, takes control)
+    Answering --> ClueOver: ← correct (+value, takes control)
     Answering --> BuzzersOpen: → incorrect (−value, timer resumes)
-    TimedOut --> Board: Space (back_to_board)
+    TimedOut --> ClueOver
 
     DDSelectPlayer --> DDAnswering: click podium, enter wager (get_dd_wager)
-    DDAnswering --> Board: ← correct (+wager) or → incorrect (−wager)
+    DDAnswering --> ClueOver: ← correct (+wager) or → incorrect (−wager)
+
+    ClueOver --> AnswerShown: Space (show_answer), SHOW_ANSWER on
+    AnswerShown --> Board: Space (back_to_board)
+    ClueOver --> Board: SHOW_ANSWER off: at once (clue_over), or Space after a time-out
 
     Board --> Board: Space when all clues done (next_round)
     Board --> Final: next_round from round 2
@@ -51,6 +56,7 @@ Details:
 
 - `open_responses` lights the borders, sleeps `BUZZER_DELAY` (0.25 s), then sets `accepting_responses`. The 4-second timer pauses while someone is answering and resumes after a wrong answer.
 - An accepted buzz plays `buzz.wav` (`Game.buzz_sound`, loaded once in `__init__`) before anything else, to keep it in time with the press.
+- When a clue is over, `correct_answer` and a judged Daily Double call `clue_over`, and `stumped` activates the next event itself (it runs on the timer thread). With `SHOW_ANSWER` on in [constants.py](../jparty/constants.py), the next Space calls `show_answer`, which replaces the clue on the TV with the answer in gold (`QuestionWidget.show_answer`, called on `main_display` only), and the Space after that returns to the board. With it off, a judged clue returns to the board at once and a timed-out one waits for Space, as before. A wrong answer on a normal clue reopens the buzzers either way.
 - `buzz` ignores the player stored in `previous_answerer`, i.e. only the most recent answerer is locked out.
 - A buzz while no clue is open just blinks that player's podium, which is useful for testing phones in the lobby.
 - Daily Double: `soliciting_player` is set, so clicking a podium calls `get_dd_wager`. Maximum wager is `max(score, 1000)`. Cancelling the dialog lets the host choose a different player. A wrong Daily Double answer returns straight to the board.

@@ -28,6 +28,11 @@ class QuestionWidget(QWidget):
     def startFontSize(self):
         return self.width() * 0.05
 
+    def show_answer(self):
+        # only called once the clue is over (SHOW_ANSWER), never while it is in play
+        self.question_label.setText(self.question.answer.upper())
+        self.question_label.setStyleSheet("color: #ffcc00")
+
 
 class HostQuestionWidget(QuestionWidget):
     def __init__(self, question, parent=None):

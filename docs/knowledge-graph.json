@@ -17,7 +17,7 @@
    "id": "module:jparty.constants",
    "type": "module",
    "path": "jparty/constants.py",
-   "lines": 10
+   "lines": 11
   },
   {
    "id": "module:jparty.controller",
@@ -41,7 +41,7 @@
    "id": "module:jparty.game",
    "type": "module",
    "path": "jparty/game.py",
-   "lines": 678
+   "lines": 694
   },
   {
    "id": "module:jparty.helpmsg",
@@ -71,7 +71,7 @@
    "id": "module:jparty.question_widget",
    "type": "module",
    "path": "jparty/question_widget.py",
-   "lines": 133
+   "lines": 138
   },
   {
    "id": "module:jparty.retrieve",
@@ -493,6 +493,8 @@
     "close_responses",
     "buzz",
     "answer_given",
+    "clue_over",
+    "show_answer",
     "back_to_board",
     "index_of_current_round",
     "is_final",
@@ -533,7 +535,7 @@
    "id": "class:Player",
    "type": "class",
    "module": "jparty.game",
-   "line": 664,
+   "line": 680,
    "methods": [
     "__init__",
     "__hash__",
@@ -672,14 +674,15 @@
    "line": 12,
    "methods": [
     "__init__",
-    "startFontSize"
+    "startFontSize",
+    "show_answer"
    ]
   },
   {
    "id": "class:HostQuestionWidget",
    "type": "class",
    "module": "jparty.question_widget",
-   "line": 32,
+   "line": 37,
    "methods": [
     "__init__",
     "paintEvent"
@@ -689,7 +692,7 @@
    "id": "class:DailyDoubleWidget",
    "type": "class",
    "module": "jparty.question_widget",
-   "line": 51,
+   "line": 56,
    "methods": [
     "__init__",
     "startDDFontSize",
@@ -700,7 +703,7 @@
    "id": "class:HostDailyDoubleWidget",
    "type": "class",
    "module": "jparty.question_widget",
-   "line": 69,
+   "line": 74,
    "methods": [
     "__init__",
     "show_question"
@@ -710,7 +713,7 @@
    "id": "class:FinalJeopardyWidget",
    "type": "class",
    "module": "jparty.question_widget",
-   "line": 91,
+   "line": 96,
    "methods": [
     "__init__",
     "startCategoryFontSize",
@@ -721,7 +724,7 @@
    "id": "class:HostFinalJeopardyWidget",
    "type": "class",
    "module": "jparty.question_widget",
-   "line": 111,
+   "line": 116,
    "methods": [
     "__init__",
     "hide_hint",
@@ -1534,7 +1537,8 @@
     "FJTIME",
     "QUESTIONTIME",
     "BUZZER_DELAY",
-    "PLAY_FINAL"
+    "PLAY_FINAL",
+    "SHOW_ANSWER"
    ]
   },
   {

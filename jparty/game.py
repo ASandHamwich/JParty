@@ -14,7 +14,7 @@ from collections.abc import Iterable
 import logging
 
 from jparty.utils import SongPlayer, resource_path, CompoundObject, DDWagerDialog
-from jparty.constants import FJTIME, QUESTIONTIME, BUZZER_DELAY, PLAY_FINAL
+from jparty.constants import FJTIME, QUESTIONTIME, BUZZER_DELAY, PLAY_FINAL, SHOW_ANSWER
 
 
 class QuestionTimer(object):
@@ -219,6 +219,9 @@ class Game(QObject):
             "INCORRECT_ANSWER", Qt.Key.Key_Right, self.incorrect_answer, self.arrowhints
         )
         self.keystroke_manager.addEvent(
+            "SHOW_ANSWER", Qt.Key.Key_Space, self.show_answer, self.spacehints
+        )
+        self.keystroke_manager.addEvent(
             "BACK_TO_BOARD", Qt.Key.Key_Space, self.back_to_board, self.spacehints
         )
         self.keystroke_manager.addEvent(
@@ -372,6 +375,18 @@ class Game(QObject):
         self.keystroke_manager.deactivate("CORRECT_ANSWER", "INCORRECT_ANSWER")
         self.dc.player_widget(self.answering_player).stop_lights()
         self.answering_player = None
+
+    def clue_over(self):
+        # with SHOW_ANSWER on, Space reveals the answer on the TV before the board returns
+        if SHOW_ANSWER:
+            self.keystroke_manager.activate("SHOW_ANSWER")
+        else:
+            self.back_to_board()
+
+    def show_answer(self):
+        logging.info("show answer")
+        self.main_display.question_widget.show_answer()
+        self.keystroke_manager.activate("BACK_TO_BOARD")
 
     def back_to_board(self):
         logging.info("back to board")
@@ -619,7 +634,7 @@ class Game(QObject):
             wo.play()
 
         self.answer_given()
-        self.back_to_board()
+        self.clue_over()
 
     def incorrect_answer(self):
         self.set_score(
@@ -628,7 +643,7 @@ class Game(QObject):
         )
         self.answer_given()
         if self.active_question.dd:
-            self.back_to_board()
+            self.clue_over()
         else:
             self.open_responses()
             self.timer.resume()
@@ -637,7 +652,8 @@ class Game(QObject):
         self.accepting_responses = False
         sa.WaveObject.from_wave_file(resource_path("stumped.wav")).play()
         self.dc.borders.flash()
-        self.keystroke_manager.activate("BACK_TO_BOARD")
+        # runs on the timer thread, so it waits for Space rather than calling back_to_board
+        self.keystroke_manager.activate("SHOW_ANSWER" if SHOW_ANSWER else "BACK_TO_BOARD")
 
     def __toolate(self):
         self.buzzer_controller.toolate()
