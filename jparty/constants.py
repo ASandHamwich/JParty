@@ -1,11 +1,12 @@
-FJTIME = 31
-QUESTIONTIME = 4
+FJTIME = 100
+QUESTIONTIME = 10000
 MONIES = [[200, 400, 600, 800, 1000], [400, 800, 1200, 1600, 2000]]
-MAXPLAYERS = 8
+MAXPLAYERS = 12
 PORT = 8080
 BUZZER_DELAY = 0.25 # in s
 BEFORE_REVEAL_WAIT_TIME = 100 # in ms
-CATEGORY_REVEAL_TIME = 2000 # in ms
-QUESTION_REVEAL_TIME = 400 # in ms
-PLAY_FINAL = False # False ends the game after round 2: the winner is shown instead of the final round
+CATEGORY_REVEAL_TIME = 1000 # in ms
+QUESTION_REVEAL_TIME = 200 # in ms
+PLAY_FINAL = True # False ends the game after round 2: the winner is shown instead of the final round
 SHOW_ANSWER = True # True: after each clue, Space shows the correct answer on the TV, then Space again returns to the board
+# ID: 1ib36YAWu1L9OBbcoJe2FEHXKrL1XeRcJervfgikOdAI

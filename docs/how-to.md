@@ -76,7 +76,7 @@ When every clue is gone, press **Space** to go to the next round. To skip ahead 
 
 ### Skipping the final round
 
-JParty is currently set to finish after round 2. This is controlled by the line `PLAY_FINAL = False` in the file `jparty/constants.py`; to play the final round again, open that file in a text editor, change it to `PLAY_FINAL = True`, save it, and restart JParty. With the final switched off: when the round 2 board is empty, pressing **Space** shows the winner straight away, with no wagers. Press **Space** again to return to the welcome screen.
+To finish after round 2, open the file `jparty/constants.py` in a text editor, change `PLAY_FINAL = True` to `PLAY_FINAL = False`, save it, and restart JParty. When the round 2 board is empty, pressing **Space** shows the winner straight away, with no wagers. Press **Space** again to return to the welcome screen. Change it back to `True` to play the final round again.
 
 Your question sheet still needs its final clue row filled in, but nobody will see it. This works when you start JParty from its folder (for example with `./start`), not in a downloaded ready-made app.
 

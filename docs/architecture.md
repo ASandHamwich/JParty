@@ -188,6 +188,6 @@ All in [constants.py](../jparty/constants.py):
 | `MAXPLAYERS` | 8 | |
 | `PORT` | 8080 | First port tried for the buzzer server |
 | `MONIES` | 200–1000, 400–2000 | Clue values for J-Archive games |
-| `PLAY_FINAL` | False | False skips the final round: after round 2 the winner is shown |
+| `PLAY_FINAL` | True | False skips the final round: after round 2 the winner is shown |
 | `SHOW_ANSWER` | True | After each clue, an extra Space shows the correct answer on the TV |
 | `CATEGORY_REVEAL_TIME`, `QUESTION_REVEAL_TIME`, `BEFORE_REVEAL_WAIT_TIME` | 2000, 400, 100 ms | Board reveal animation |
