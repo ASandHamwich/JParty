@@ -9,4 +9,5 @@ CATEGORY_REVEAL_TIME = 1000 # in ms
 QUESTION_REVEAL_TIME = 200 # in ms
 PLAY_FINAL = True # False ends the game after round 2: the winner is shown instead of the final round
 SHOW_ANSWER = True # True: after each clue, Space shows the correct answer on the TV, then Space again returns to the board
+LOCKOUT_WRONG_ANSWERS = True # True: a player who answers a clue wrong can't buzz in again on that clue; False: they can
 # ID: 1ib36YAWu1L9OBbcoJe2FEHXKrL1XeRcJervfgikOdAI

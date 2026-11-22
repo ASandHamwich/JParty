@@ -6,7 +6,7 @@ JParty turns a laptop and a TV into a Jeopardy!-style game show. One person host
 
 - A computer (Mac, Windows or Linux) **connected to a second screen** such as a TV or projector. JParty will not start with only one screen.
 - Wi-Fi with internet access, shared by the computer and every player's phone.
-- One phone per player (1 to 8 players; 3 is the classic number).
+- One phone per player (1 to 12 players; 3 is the classic number).
 - One person to be the host. The host reads the clues and judges the answers, and does not play.
 
 ## Step 1: Get the app
@@ -46,12 +46,16 @@ The host uses only the mouse, the **space bar**, and the **left / right arrow ke
 | 1 | Click a dollar amount on the board | The clue appears on both screens. The answer appears on the laptop only. |
 | 2 | Read the clue aloud, then press **Space** | The screen edges light up white: buzzers are open. |
 | 3 | The first player to buzz answers out loud | A buzzer sound plays, and their podium lights up and counts down 5 seconds. |
-| 4 | Press **←** if they were right, **→** if they were wrong | Right: they win the money. Wrong: they lose the money and buzzers reopen for the others. |
-| 5 | Nobody buzzes within about 4 seconds? Do nothing | A time-out sound plays. |
-| 6 | Once someone is right, or time is up, press **Space** | The correct answer appears on the TV. |
+| 4 | Press **←** if they were right, **→** if they were wrong | Right: they win the money. Wrong: they lose the money and buzzers reopen. A player who got it wrong can't buzz again on this clue. |
+| 5 | Nobody knows it? Click the **gear icon** → **End clue** | Nobody's score changes. |
+| 6 | Once someone is right, press **Space** (after **End clue** this happens by itself) | The correct answer appears on the TV. |
 | 7 | Press **Space** again | Back to the board. |
 
 To skip steps 6 and 7 and keep the answer off the TV, open `jparty/constants.py` in a text editor, change `SHOW_ANSWER = True` to `SHOW_ANSWER = False`, and restart JParty. A right answer then goes straight back to the board, and after a time-out one **Space** does.
+
+There is also a time limit: if nobody buzzes in time, a time-out sound plays and step 6 follows. It is set by the line `QUESTIONTIME` in `jparty/constants.py`, in seconds. It is currently 10000 (almost 3 hours), so in practice you end unanswered clues yourself with **End clue**.
+
+To let players who got it wrong buzz in again on the same clue, change `LOCKOUT_WRONG_ANSWERS = True` to `LOCKOUT_WRONG_ANSWERS = False` in the same file and restart JParty.
 
 Remember: **← left = correct (green), → right = wrong (red).**
 
@@ -64,13 +68,13 @@ Remember: **← left = correct (green), → right = wrong (red).**
 
 ### Moving between rounds
 
-When every clue is gone, press **Space** to go to the next round. To skip ahead (or go back) at any time, click the **gear icon** in the top-right corner of the host screen and choose **Next round** or **Previous round**.
+When every clue is gone, press **Space** to go to the next round. To skip ahead (or go back) at any time between clues, click the **gear icon** in the top-right corner of the host screen and choose **Next round** or **Previous round**.
 
 ### Final round
 
 1. Each phone asks its player for a wager. Podiums stay lit until that player has wagered.
 2. When everyone has wagered, press **Space** to show the clue and read it aloud.
-3. Press **Space** again. The 30-second "think" music plays and the phones ask for a written answer. Whatever is typed when the music ends is submitted automatically.
+3. Press **Space** again. The 30-second "think" music plays and the phones ask for a written answer. Players have 100 seconds in all (the `FJTIME` line in `jparty/constants.py`); whatever is typed when time runs out is submitted automatically.
 4. Press **Space** to step through the players, lowest score first. For each one: **Space** reveals their answer, then **←** / **→** judges it and shows the wager.
 5. After the last player the winner is shown. Press **Space** to return to the welcome screen.
 
@@ -84,6 +88,8 @@ Your question sheet still needs its final clue row filled in, but nobody will se
 
 - **Wrong score?** Click the player's podium on the laptop → **Change score**.
 - **Remove a player?** Click their podium → **Remove player**.
+- **Picked the wrong clue?** Gear icon → **Put clue back**, before you press **Space** to open the buzzers (for a Daily Double, before you choose the player). The clue goes back on the board, unplayed.
+- **Want to move on from a clue?** Gear icon → **End clue**, at any point during the clue. Nobody's score changes and the clue is used up. The answer appears on the TV; press **Space** to return to the board. (With `SHOW_ANSWER = False`, it goes straight back to the board instead.)
 - **Latecomer wants to join?** Gear icon → **Allow new players**. The QR code comes back on the TV. Click **Done** when they are in.
 - **A phone lost its connection or went to sleep?** Reload the page on that phone. It rejoins as the same player with the same score (for up to 24 hours).
 - **End the game early?** Gear icon → **Quit game**.

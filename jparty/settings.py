@@ -167,6 +167,17 @@ class InGameSettingsDialog(SettingsDialog):
         self.prev_button.clicked.connect(self.disable_buttons)
         layout.addWidget(self.prev_button, 3)
 
+        # shown instead of the round buttons while a clue is on screen
+        self.end_clue_button = QPushButton("End clue", self)
+        self.end_clue_button.clicked.connect(self.game.end_clue)
+        self.end_clue_button.clicked.connect(self.close)
+        layout.addWidget(self.end_clue_button, 3)
+
+        self.cancel_clue_button = QPushButton("Put clue back", self)
+        self.cancel_clue_button.clicked.connect(self.game.cancel_clue)
+        self.cancel_clue_button.clicked.connect(self.close)
+        layout.addWidget(self.cancel_clue_button, 3)
+
         self.quit_button = QPushButton("Quit game", self)
         self.quit_button.clicked.connect(self.quit_game)
         layout.addWidget(self.quit_button, 3)
@@ -210,6 +221,15 @@ class InGameSettingsDialog(SettingsDialog):
         self.game.modify_players(True)
 
     def disable_buttons(self):
+        in_clue = self.game.active_question is not None
+        # changing round or opening registration mid-clue would break the clue
+        for button in (self.next_button, self.prev_button, self.open_button):
+            button.setVisible(not in_clue)
+        for button in (self.end_clue_button, self.cancel_clue_button):
+            button.setVisible(in_clue)
+        self.end_clue_button.setDisabled(not self.game.can_end_clue())
+        self.cancel_clue_button.setDisabled(not self.game.can_cancel_clue())
+
         i = self.game.index_of_current_round()
         self.prev_button.setDisabled(i == 0)
         self.next_button.setDisabled(i == 2 or self.game.final_skipped)

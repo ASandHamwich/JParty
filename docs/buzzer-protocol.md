@@ -39,7 +39,7 @@ To minimise latency, the server checks for the substring `BUZZ` in the raw messa
 | `TOKEN` | token (hex) | Store as a 24-hour cookie; show the buzzer |
 | `EXISTS` | JSON `{"page", "score"}` | Restore the page the player was on |
 | `GAMESTARTED` | none | Alert "Game has started!" |
-| `GAMEFULL` | none | Sent when 8 players are connected. Alert "Game has too many players!", then reload |
+| `GAMEFULL` | none | Sent when `MAXPLAYERS` (12) players are connected. Alert "Game has too many players!", then reload |
 | `PROMPTWAGER` | max wager (`max(score, 0)`) | Show the wager form |
 | `BACK` | none | Return to the buzzer (sent when leaving the final via Previous round) |
 | `PROMPTANSWER` | none | Show the answer form |

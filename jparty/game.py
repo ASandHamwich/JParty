@@ -14,7 +14,14 @@ from collections.abc import Iterable
 import logging
 
 from jparty.utils import SongPlayer, resource_path, CompoundObject, DDWagerDialog
-from jparty.constants import FJTIME, QUESTIONTIME, BUZZER_DELAY, PLAY_FINAL, SHOW_ANSWER
+from jparty.constants import (
+    FJTIME,
+    QUESTIONTIME,
+    BUZZER_DELAY,
+    PLAY_FINAL,
+    SHOW_ANSWER,
+    LOCKOUT_WRONG_ANSWERS,
+)
 
 
 class QuestionTimer(object):
@@ -95,6 +102,13 @@ class KeystrokeManager(object):
         e.hint_setter(True)
         if e.hint_setter:
             e.hint_setter(True)
+
+    def is_active(self, ident):
+        return self.__events[ident].active
+
+    def deactivate_all(self):
+        for ident in self.__events:
+            self._deactivate(ident)
 
     def _deactivate(self, ident):
         e = self.__events[ident]
@@ -198,7 +212,7 @@ class Game(QObject):
         self.active_question = None
         self.accepting_responses = False
         self.answering_player = None
-        self.previous_answerer = None
+        self.locked_out = set()  # players who answered the current clue wrong
         self.timer = None
         self.soliciting_player = False  # part of selecting who found a daily double
         self.final_skipped = False  # winner shown straight after round 2 (PLAY_FINAL off)
@@ -355,12 +369,11 @@ class Game(QObject):
 
     def buzz(self, i_player):
         player = self.players[i_player]
-        if self.accepting_responses and player is not self.previous_answerer:
+        if self.accepting_responses and player not in self.locked_out:
             logging.info(f"buzz ({time.time():.6f} s)")
             self.accepting_responses = False
             self.buzz_sound.play()
             self.timer.pause()
-            self.previous_answerer = player
             self.dc.player_widget(player).run_lights()
 
             self.answering_player = player
@@ -388,13 +401,57 @@ class Game(QObject):
         self.main_display.question_widget.show_answer()
         self.keystroke_manager.activate("BACK_TO_BOARD")
 
+    def can_end_clue(self):
+        # a clue is on screen and is not already on its way back to the board
+        return self.active_question is not None and not self.keystroke_manager.is_active(
+            "BACK_TO_BOARD"
+        )
+
+    def can_cancel_clue(self):
+        # nobody has played the clue yet: buzzers never opened, or no Daily Double wager
+        return self.active_question is not None and (
+            self.keystroke_manager.is_active("OPEN_RESPONSES") or self.soliciting_player
+        )
+
+    def end_clue(self):
+        """Gear menu: finish the clue now, without changing any score. The card is used up."""
+        if not self.can_end_clue():
+            return
+        logging.info("end clue")
+        if self.timer:
+            self.timer.cancel()
+        self.accepting_responses = False
+        self.keystroke_manager.deactivate("OPEN_RESPONSES", "SHOW_ANSWER")
+        if self.answering_player is not None:
+            self.answer_given()
+        if self.soliciting_player:
+            # a Daily Double nobody wagered on: its clue was never shown
+            self.soliciting_player = False
+            self.dc.question_widget.show_question()
+        self.dc.borders.lights(False)
+        if SHOW_ANSWER:
+            self.show_answer()
+        else:
+            self.back_to_board()
+
+    def cancel_clue(self):
+        """Gear menu: put the card back on the board, as if it had not been picked."""
+        if not self.can_cancel_clue():
+            return
+        logging.info("cancel clue")
+        q = self.active_question
+        self.keystroke_manager.deactivate("OPEN_RESPONSES")
+        self.soliciting_player = False
+        self.dc.hide_question()
+        self.active_question = None
+        self.dc.board_widget.set_question(q.index[0], q.index[1] + 1, q)
+
     def back_to_board(self):
         logging.info("back to board")
         self.dc.hide_question()
         self.timer = None
         self.active_question.complete = True
         self.active_question = None
-        self.previous_answerer = None
         if all(q.complete for q in self.current_round.questions):
             logging.info("NEXT ROUND")
             self.keystroke_manager.activate("NEXT_ROUND")
@@ -574,7 +631,15 @@ class Game(QObject):
         self.players = []
         self.current_round = None
         self.answering_player = None
+        # Quit game works mid-clue, so stop its timer and key events too
+        if self.timer:
+            self.timer.cancel()
         self.timer = None
+        self.active_question = None
+        self.accepting_responses = False
+        self.soliciting_player = False
+        self.locked_out = set()
+        self.keystroke_manager.deactivate_all()
         self.data = None
         self.__judgement_round = 0
         self.final_skipped = False
@@ -604,6 +669,7 @@ class Game(QObject):
 
     def load_question(self, q):
         self.active_question = q
+        self.locked_out = set()
         if q.dd:
             logging.info("Daily double!")
             wo = sa.WaveObject.from_wave_file(resource_path("dd.wav"))
@@ -641,6 +707,8 @@ class Game(QObject):
             self.answering_player,
             self.answering_player.score - self.active_question.value,
         )
+        if LOCKOUT_WRONG_ANSWERS:
+            self.locked_out.add(self.answering_player)
         self.answer_given()
         if self.active_question.dd:
             self.clue_over()

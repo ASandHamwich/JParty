@@ -255,13 +255,22 @@ class HostDisplayWindow(DisplayWindow):
         super().restart()
         self.settings_button.setVisible(False)
 
+    def close_settings(self):
+        # the gear menu shows different options during a clue, so an open one goes stale
+        for dialog in self.findChildren(InGameSettingsDialog):
+            dialog.close()
+
     def hide_question(self):
         super().hide_question()
+        self.close_settings()
         self.settings_button.setVisible(True)
 
     def load_question(self, q):
         super().load_question(q)
-        self.settings_button.setVisible(False)
+        self.close_settings()
+        # stays visible: during a clue the gear menu offers End clue / Put clue back
+        self.settings_button.setVisible(True)
+        self.settings_button.raise_()
 
     def set_player_in_control(self, new_player):
         for pw in self.scoreboard.player_widgets:

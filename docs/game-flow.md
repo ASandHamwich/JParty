@@ -34,12 +34,14 @@ stateDiagram-v2
 
     ClueShown --> BuzzersOpen: Space (open_responses)
     BuzzersOpen --> Answering: phone BUZZ (buzz)
-    BuzzersOpen --> TimedOut: 4 s QuestionTimer (stumped)
+    BuzzersOpen --> TimedOut: QUESTIONTIME QuestionTimer (stumped)
     Answering --> ClueOver: ← correct (+value, takes control)
     Answering --> BuzzersOpen: → incorrect (−value, timer resumes)
     TimedOut --> ClueOver
 
     DDSelectPlayer --> DDAnswering: click podium, enter wager (get_dd_wager)
+    ClueShown --> Board: gear, Put clue back (cancel_clue)
+    DDSelectPlayer --> Board: gear, Put clue back (cancel_clue)
     DDAnswering --> ClueOver: ← correct (+wager) or → incorrect (−wager)
 
     ClueOver --> AnswerShown: Space (show_answer), SHOW_ANSWER on
@@ -54,15 +56,18 @@ stateDiagram-v2
 
 Details:
 
-- `open_responses` lights the borders, sleeps `BUZZER_DELAY` (0.25 s), then sets `accepting_responses`. The 4-second timer pauses while someone is answering and resumes after a wrong answer.
+- `open_responses` lights the borders, sleeps `BUZZER_DELAY` (0.25 s), then sets `accepting_responses`. The `QUESTIONTIME` timer pauses while someone is answering and resumes after a wrong answer.
 - An accepted buzz plays `buzz.wav` (`Game.buzz_sound`, loaded once in `__init__`) before anything else, to keep it in time with the press.
 - When a clue is over, `correct_answer` and a judged Daily Double call `clue_over`, and `stumped` activates the next event itself (it runs on the timer thread). With `SHOW_ANSWER` on in [constants.py](../jparty/constants.py), the next Space calls `show_answer`, which replaces the clue on the TV with the answer in gold (`QuestionWidget.show_answer`, called on `main_display` only), and the Space after that returns to the board. With it off, a judged clue returns to the board at once and a timed-out one waits for Space, as before. A wrong answer on a normal clue reopens the buzzers either way.
-- `buzz` ignores the player stored in `previous_answerer`, i.e. only the most recent answerer is locked out.
+- With `LOCKOUT_WRONG_ANSWERS` on, `incorrect_answer` adds the player to `Game.locked_out` and `buzz` ignores everyone in it, so each player gets one try per clue. `load_question` empties the set. With it off nobody is ever locked out, including the player who just answered.
 - A buzz while no clue is open just blinks that player's podium, which is useful for testing phones in the lobby.
 - Daily Double: `soliciting_player` is set, so clicking a podium calls `get_dd_wager`. Maximum wager is `max(score, 1000)`. Cancelling the dialog lets the host choose a different player. A wrong Daily Double answer returns straight to the board.
 - Entering round 2, the player with the lowest score gets the "in control" glow on the host screen.
 - A category whose name is blank is not played (custom games with fewer than 6 categories). `Board.__init__` marks its clues complete, so the round ends without them, and `BoardWidget.load_round` hides the column (`show_column`) so the others fill the board. `BoardWidget.clear` shows every column again.
-- The gear dialog's Next/Previous round buttons call `next_round` / `prev_round` directly, regardless of how many clues remain.
+- The gear dialog's Next/Previous round buttons call `next_round` / `prev_round` directly, regardless of how many clues remain. They and Allow new players are hidden while a clue is on screen (`active_question` set).
+- The gear stays visible during a clue, and its dialog then shows End clue and Put clue back instead (`InGameSettingsDialog.disable_buttons`). `HostDisplayWindow.load_question` and `hide_question` close any open dialog (`close_settings`), since its buttons depend on whether a clue is showing.
+  - **End clue** (`end_clue`, enabled while `can_end_clue`: a clue is showing and `BACK_TO_BOARD` is not active): cancels the timer, closes the buzzers, deactivates `OPEN_RESPONSES` / `SHOW_ANSWER`, stops an answering player (`answer_given`), reveals an unwagered Daily Double's clue, and changes no score. Then, with `SHOW_ANSWER` on, it shows the answer on the TV at once and activates `BACK_TO_BOARD`; with it off it calls `back_to_board`. The card is used up.
+  - **Put clue back** (`cancel_clue`, enabled while `can_cancel_clue`: `OPEN_RESPONSES` is active, or a Daily Double still has `soliciting_player` set): hides the clue and puts the `Question` back on its card through `BoardWidget.set_question`, uncompleted, so it can be picked again.
 - With `PLAY_FINAL = False` in [constants.py](../jparty/constants.py), `next_round` from round 2 calls `end_without_final` instead of loading the final: it sets `final_skipped`, overlays the `FinalDisplay` on the round 2 board and calls `end_game`, which lights the winner's podium and activates `CLOSE_GAME`. `current_round` stays on round 2, so `is_final()` stays false and no wagers are requested. While `final_skipped` is set the gear dialog disables Next round, and Previous round removes the winner overlay, turns off the podium lights and deactivates `CLOSE_GAME`, leaving the round 2 board. The game data must still contain a final clue, since `valid_game` checks every round.
 
 ## Final round
@@ -78,7 +83,7 @@ sequenceDiagram
     H->>G: Space (open_final): show clue
     H->>G: Space (final_open_responses)
     G->>P: PROMPTANSWER
-    Note over G: plays final.wav, 31 s timer
+    Note over G: plays final.wav, FJTIME timer
     P->>G: ANSWER text (may arrive any time)
     G->>P: TOOLATE (timer end): phone auto-submits its box
     loop each player, lowest score first
@@ -90,7 +95,7 @@ sequenceDiagram
     H->>G: Space (close_game): back to Welcome
 ```
 
-`close_game` closes every phone socket, clears players and game data, re-opens registration, resets both displays and restarts the theme song.
+`close_game` closes every phone socket, clears players and game data, cancels any running timer, clears the clue state and deactivates every key event (`KeystrokeManager.deactivate_all`, since **Quit game** can be used mid-clue), re-opens registration, resets both displays and restarts the theme song.
 
 ## Players joining and leaving
 

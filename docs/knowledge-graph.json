@@ -17,7 +17,7 @@
    "id": "module:jparty.constants",
    "type": "module",
    "path": "jparty/constants.py",
-   "lines": 11
+   "lines": 13
   },
   {
    "id": "module:jparty.controller",
@@ -41,7 +41,7 @@
    "id": "module:jparty.game",
    "type": "module",
    "path": "jparty/game.py",
-   "lines": 694
+   "lines": 762
   },
   {
    "id": "module:jparty.helpmsg",
@@ -65,7 +65,7 @@
    "id": "module:jparty.main_display",
    "type": "module",
    "path": "jparty/main_display.py",
-   "lines": 277
+   "lines": 286
   },
   {
    "id": "module:jparty.question_widget",
@@ -89,7 +89,7 @@
    "id": "module:jparty.settings",
    "type": "module",
    "path": "jparty/settings.py",
-   "lines": 226
+   "lines": 246
   },
   {
    "id": "module:jparty.style",
@@ -403,7 +403,7 @@
    "id": "class:QuestionTimer",
    "type": "class",
    "module": "jparty.game",
-   "line": 20,
+   "line": 27,
    "methods": [
     "__init__",
     "run",
@@ -417,19 +417,21 @@
    "id": "class:KeystrokeEvent",
    "type": "class",
    "module": "jparty.game",
-   "line": 58,
+   "line": 65,
    "methods": []
   },
   {
    "id": "class:KeystrokeManager",
    "type": "class",
    "module": "jparty.game",
-   "line": 66,
+   "line": 73,
    "methods": [
     "__init__",
     "addEvent",
     "call",
     "_activate",
+    "is_active",
+    "deactivate_all",
     "_deactivate",
     "activate",
     "deactivate"
@@ -439,14 +441,14 @@
    "id": "class:Question",
    "type": "class",
    "module": "jparty.game",
-   "line": 121,
+   "line": 135,
    "methods": []
   },
   {
    "id": "class:Board",
    "type": "class",
    "module": "jparty.game",
-   "line": 131,
+   "line": 145,
    "methods": [
     "__init__",
     "column_in_use",
@@ -458,7 +460,7 @@
    "id": "class:FinalBoard",
    "type": "class",
    "module": "jparty.game",
-   "line": 161,
+   "line": 175,
    "methods": [
     "__init__",
     "complete"
@@ -468,14 +470,14 @@
    "id": "class:GameData",
    "type": "class",
    "module": "jparty.game",
-   "line": 174,
+   "line": 188,
    "methods": []
   },
   {
    "id": "class:Game",
    "type": "class",
    "module": "jparty.game",
-   "line": 180,
+   "line": 194,
    "methods": [
     "__init__",
     "startable",
@@ -495,6 +497,10 @@
     "answer_given",
     "clue_over",
     "show_answer",
+    "can_end_clue",
+    "can_cancel_clue",
+    "end_clue",
+    "cancel_clue",
     "back_to_board",
     "index_of_current_round",
     "is_final",
@@ -535,7 +541,7 @@
    "id": "class:Player",
    "type": "class",
    "module": "jparty.game",
-   "line": 680,
+   "line": 748,
    "methods": [
     "__init__",
     "__hash__",
@@ -662,6 +668,7 @@
     "show_settings",
     "show_player_settings",
     "restart",
+    "close_settings",
     "hide_question",
     "load_question",
     "set_player_in_control"
@@ -1538,7 +1545,8 @@
     "QUESTIONTIME",
     "BUZZER_DELAY",
     "PLAY_FINAL",
-    "SHOW_ANSWER"
+    "SHOW_ANSWER",
+    "LOCKOUT_WRONG_ANSWERS"
    ]
   },
   {
@@ -2565,7 +2573,7 @@
    "source": "class:Game",
    "target": "class:QuestionTimer",
    "relation": "creates",
-   "note": "4 s buzz window, 31 s Final Jeopardy",
+   "note": "QUESTIONTIME buzz window, FJTIME Final Jeopardy",
    "curated": true
   },
   {
